@@ -28,4 +28,5 @@ public class Ball : MonoBehaviour
         float y = Random.Range(0,2) == 0 ? -1 : 1;
         rb.velocity = new Vector2(speed*x, speed*y);
     }
+
 }
