@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 681f07c4958c04ac8a9b6493e0d4f333, type: 3}
-  m_Name: New Impassable Ability
+  m_Name: Impassable
   m_EditorClassIdentifier: 
   name: 
   activeTime: 2

@@ -7,7 +7,6 @@ public class AbilityHolder : MonoBehaviour
     public Ability ability;
     public KeyCode key;
     public GameObject player;
-    
 
     private States GameState = States.inactive;
     private float timer;
@@ -38,25 +37,6 @@ public class AbilityHolder : MonoBehaviour
                     timer = ability.activeTime;
                 }
                 break;
-
-
-
-            
-            
         }
-
-        
-
-        // if(Input.GetKeyDown(key))
-        // {
-        //     isActive = !isActive;
-        // }
-
-        // if(isActive) 
-        // {
-        //     ability.Activate(player);
-        // }
-
-        
     }
 }
