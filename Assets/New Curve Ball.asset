@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfc5ce9bc75a00548a1273fb54e5c36d, type: 3}
-  m_Name: Slingshot
+  m_Script: {fileID: 11500000, guid: 1cc4e9ceaa2ba6f4b9f22fe12343f905, type: 3}
+  m_Name: New Curve Ball
   m_EditorClassIdentifier: 
   name: 
-  activeTime: 1
-  velocityScale: 3
+  isPlayer1: 1
+  gravity: 3

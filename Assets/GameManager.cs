@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     private void ResetPosition()
     {
         Ball.GetComponent<Ball>().Reset();
+        Ball.GetComponent<SpriteRenderer>().enabled = true;
         Player1Paddle.GetComponent<Paddle>().Reset();
         Player2Paddle.GetComponent<Paddle>().Reset();
     }
