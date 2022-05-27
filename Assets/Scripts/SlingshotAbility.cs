@@ -6,6 +6,7 @@ using UnityEngine;
 public class SlingshotAbility : Ability
 {
     public float velocityScale;
+    
 
     public override void Activate(GameObject parent)
     {

@@ -39,4 +39,11 @@ public class AbilityHolder : MonoBehaviour
                 break;
         }
     }
+
+    public void ResetAllAbilities(){
+        if (GameState == States.active){
+            GameState = States.inactive;
+            ability.Deactivate(player);
+        }
+    }
 }

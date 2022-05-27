@@ -1759,7 +1759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ability: {fileID: 11400000, guid: 7787e012ae3eb034b99a160f363c37ca, type: 2}
   key: 106
-  player: {fileID: 379870171}
+  affectedObject: {fileID: 0}
 --- !u!1 &1581551319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,6 +2105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4725078b056ef47bf2a04247f4f14d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ability: {fileID: 11400000, guid: 7787e012ae3eb034b99a160f363c37ca, type: 2}
+  ability: {fileID: 11400000, guid: b37e54a53bd7ab04aba42ef0df4e3cb2, type: 2}
   key: 97
-  player: {fileID: 379870171}
+  affectedObject: {fileID: 379870171}

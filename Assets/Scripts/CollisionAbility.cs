@@ -6,7 +6,7 @@ public class CollisionAbility : MonoBehaviour
 {
     public AbilityOnCollision ability;
     public KeyCode key;
-    public GameObject player;
+    public GameObject affectedObject;
 
     private States GameState = States.inactive;
 
@@ -27,10 +27,10 @@ public class CollisionAbility : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider){
         if (collider.gameObject.CompareTag("Ball") && GameState == States.active){
             GameState = States.activated;
-            ability.Activate(player);
+            ability.Activate(affectedObject);
         } else if (collider.gameObject.GetComponent<CustomTag>().HasTag("CollisionWallTag") && GameState == States.activated){
             GameState = States.inactive;
-            ability.Deactivate(player);
+            ability.Deactivate(affectedObject);
         }
     }
 

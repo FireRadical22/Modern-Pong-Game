@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     {
         Player1Score++;
         Player1Text.GetComponent<TextMeshProUGUI>().text = Player1Score.ToString();
+        Player1Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
+        Player2Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
         ResetPosition();
     }
 
@@ -34,6 +36,8 @@ public class GameManager : MonoBehaviour
     {
         Player2Score++;
         Player2Text.GetComponent<TextMeshProUGUI>().text = Player2Score.ToString();
+        Player2Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
+        Player1Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
         ResetPosition();
     }
 
