@@ -29,10 +29,10 @@ Proposed core features:
  
 2. Player vs Player/Bot
 
-    2.1 Player vs Player:
+    2.1 Player vs Player: (PvP)
     Players can play against each other on the same screen.(Couch Multiplayer) Each player uses a seperate set of keys to manoveurve the paddles and activate their         skills on a keyboard. The victor is determined by the first player to score 11 goals.
 
-    2.2 Player vs AI:
+    2.2 Player vs AI: (PvA)
     Players can fight against bots of 3 different difficulties: Easy, Medium, Hard. Players can only fight the bot at the next difficulty if they have defeated the bot     at the current difficulty.
 
 3. Animations, trials and skins
@@ -48,7 +48,8 @@ Implementation:
       3. Add in sound effects created into the game.
       3. Add in a simple goal animation and ball trail using Particle System component
       4. Add in natural speed multiplier that increases speed of the ball after each collision with the paddle. 
-      5. Add in scoreboard to keep track of the 
+      5. Add in scoreboard to keep track of goals scored
+      6. Add in a victory/defeat animation for PvP and PvA matches
    
    Skills:
    
