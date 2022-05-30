@@ -36,7 +36,8 @@ Proposed core features:
     Players can fight against bots of 3 different difficulties: Easy, Medium, Hard. Players can only fight the bot at the next difficulty if they have defeated the bot     at the current difficulty.
 
 3. Miscellanous
-Players can enjoy different goal animations, ball trails, paddle and ball skins to use while playing against other Players/bots.
+
+   Players can enjoy different goal animations, ball trails, paddle and ball skins to use while playing against other Players/bots.
 
 Design:
 
