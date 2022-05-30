@@ -9,7 +9,7 @@ While attending an online programming course, the game Pong was introduced to us
 
 Proposed core features:
 1. Skills 
-Players can acquire skills by directing the ball towards skill boxes that randomly generate within the game board. Each player can only hold up to 3 skills in their inventory at any given time. Upon scoring, any skill that was already in use will be removed from the respective player's inventory. The skills players can use are as follows:
+   Players can acquire skills by directing the ball towards skill boxes that randomly generate within the game board. Each player can only hold up to 3 skills in their    inventory at any given time. Upon scoring, any skill that was already in use will be removed from the respective player's inventory. The skills players can use are    as follows:
 
     1.1 InvisiBall:
     Upon colliding with the user's paddle, the ball will turn invisible. The skill is deactivated when the ball hits the opponent's paddle or the user scores a goal.
