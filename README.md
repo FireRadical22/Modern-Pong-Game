@@ -48,6 +48,7 @@ Implementation:
       3. Add in sound effects created into the game.
       3. Add in a simple goal animation and ball trail using Particle System component
       4. Add in natural speed multiplier that increases speed of the ball after each collision with the paddle. 
+      5. Add in scoreboard to keep track of the 
    
    Skills:
    
