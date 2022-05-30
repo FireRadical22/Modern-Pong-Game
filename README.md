@@ -52,19 +52,19 @@ Implementation:
    Skills:
    
       1. InvisiBall: toggle sprite renderer of the ball depending on whether the skill is activated/deactivated
-      2. BounceBall: change value of Ball's gravityScale. When activated, set gravityScale to value set; otherwise, 0. Negate gravityScale if y-component of vector of          incoming ball is positive.
+      2. BounceBall: change value of Ball's gravityScale. When activated, set gravityScale to value set; otherwise, 0. Negate gravityScale if y-component of vector of incoming ball is positive.
       3. Multi-Ball: Instantiate 3 more Balls on collision with user's paddle with slightly darker shade of colour. Vary the y-component of all 4 ball's vectors.
-      4. Slingshot: Multiply velocity of Ball by a value set during the duration of the time set. Upon deactivation, divide velocity of Ball by                                             (Natural speed multiplier / value set).
+      4. Slingshot: Multiply velocity of Ball by a value set during the duration of the time set. Upon deactivation, divide velocity of Ball by (Natural speed multiplier / value set).
       5. Impassable: Multiply length of the paddle by a value set when activated. Divide length of the paddle by the same value when deactivated.
       
       Skill Holder (Holds up to 3 skills for each player at any given time):
       
-       - Use delegate to determine which skill's Activate function to call upon pressing key. (if a skill is found in the player's inventory, mapped to the key                  pressed)
+       - Use delegate to determine which skill's Activate function to call upon pressing key. (if a skill is found in the player's inventory, mapped to the key pressed)
        - Each delegate is mapped to a key, resulting in a total 6 delegates mapped to 6 keys.
       
       Skill Box:
       
-       - Create a randomiser that generates a random enum value that corresponds to a skill. The skill's Activate function is then fed to an available Delegate (if              any)
+       - Create a randomiser that generates a random enum value that corresponds to a skill. The skill's Activate function is then fed to an available Delegate (if any)
    
    Miscellaneous:
    
