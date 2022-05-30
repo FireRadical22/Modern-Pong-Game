@@ -35,11 +35,43 @@ Proposed core features:
     2.2 Player vs AI:
     Players can fight against bots of 3 different difficulties: Easy, Medium, Hard. Players can only fight the bot at the next difficulty if they have defeated the bot     at the current difficulty.
 
-3. Miscellanous
+3. Animations, trials and skins
 
    Players can enjoy different goal animations, ball trails, paddle and ball skins to use while playing against other Players/bots.
 
-Design:
+Implementation: 
 
-Plan: 
-
+   Gameplay:
+      
+      1. Create the base Pong Game (with the standard paddle and ball skin)
+      2. Create sound effects on collision between paddle and ball using soundTrap 
+      3. Add in sound effects created into the game.
+      3. Add in a simple goal animation and ball trail using Particle System component
+      4. Add in natural speed multiplier that increases speed of the ball after each collision with the paddle. 
+   
+   Skills:
+   
+      1. InvisiBall: toggle sprite renderer of the ball depending on whether the skill is activated/deactivated
+      2. BounceBall: change value of Ball's gravityScale. When activated, set gravityScale to value set; otherwise, 0. Negate gravityScale if y-component of vector of          incoming ball is positive.
+      3. Multi-Ball: Instantiate 3 more Balls on collision with user's paddle with slightly darker shade of colour. Vary the y-component of all 4 ball's vectors.
+      4. Slingshot: Multiply velocity of Ball by a value set during the duration of the time set. Upon deactivation, divide velocity of Ball by                                             (Natural speed multiplier / value set).
+      5. Impassable: Multiply length of the paddle by a value set when activated. Divide length of the paddle by the same value when deactivated.
+      
+      Skill Holder (Holds up to 3 skills for each player at any given time):
+      
+       - Use delegate to determine which skill's Activate function to call upon pressing key. (if a skill is found in the player's inventory, mapped to the key                  pressed)
+       - Each delegate is mapped to a key, resulting in a total 6 delegates mapped to 6 keys.
+      
+      Skill Box:
+      
+       - Create a randomiser that generates a random enum value that corresponds to a skill. The skill's Activate function is then fed to an available Delegate (if              any)
+   
+   Miscellaneous:
+   
+     - Add in UI start menu
+     - Add in UI pause menu 
+     - Create music for start menu using soundTrap
+     - Create a few musics for gameplay
+     - Create an Audio Manager for gameplay musics (to be played in order)
+     - Add in more goal animations and ball trails using particle system and trail renderer respectively
+     - Create new paddle and ball skins using GIMP/Microsoft Paint 3D
