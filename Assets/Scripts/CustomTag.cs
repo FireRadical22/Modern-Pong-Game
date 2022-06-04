@@ -1,12 +1,32 @@
 using UnityEngine;
 using System.Collections.Generic;
  
+
+public class Pair<T, U> {
+    public Pair() {
+    }
+
+    public Pair(T first, U second) {
+        this.First = first;
+        this.Second = second;
+    }
+
+    public T First { get; set; }
+    public U Second { get; set; }
+}
+
+
 public class CustomTag : MonoBehaviour 
 {
+    //keys
     [SerializeField]
-    private List<string> tags = new List<string>();
-     
-    public bool HasTag(string tag)
+    private List<Ability> tags = new List<Ability>();
+    
+    [SerializeField]
+    private List<GameObject> affectedObjects = new List<GameObject>();
+
+     //create dictionary for keys and values (value is pair of ability and affected gameobject?)
+    /*public bool HasTag(string tag)
     {
         return tags.Contains(tag);
     }
@@ -29,5 +49,5 @@ public class CustomTag : MonoBehaviour
     public int Count
     {
         get { return tags.Count; }
-    }
+    }*/
 }
