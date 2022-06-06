@@ -55,7 +55,7 @@ public class AbilityHolder : MonoBehaviour
 
                 if (currentAbilityInUse is TimeAbility)
                 {
-                    if (currentAbilityInUse is ImpassableAbility)
+                    if (currentAbilityInUse is Impassable)
                     {
                         timer = 5; //Change this later, for some reason cannot access active time 
                         currentAbilityInUse.Activate(player);
@@ -77,7 +77,7 @@ public class AbilityHolder : MonoBehaviour
 
                 if (timer <= 0)
                 {
-                    if (currentAbilityInUse is ImpassableAbility) // Placeholder until something better is found
+                    if (currentAbilityInUse is Impassable) // Placeholder until something better is found
                     {
                         currentAbilityInUse.Deactivate(player);
                         if (currentAbilityInUseIndex != -1)
