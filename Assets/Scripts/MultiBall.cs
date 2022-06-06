@@ -18,9 +18,11 @@ public class MultiBall : AbilityOnCollision
             GameObject clone = Object.Instantiate(PreFab, PreFab.transform.position, Quaternion.identity); 
             if (i != realBall){
                 clone.tag = "Untagged";
+                clone.GetComponent<SpriteRenderer>().color = Color.gray;
             }
             Rigidbody2D cloneBody = clone.GetComponent<Rigidbody2D>();
             //rotateVector(cloneBody.velocity, angle);
+            cloneBody.velocity = new Vector2(10, i * 5);
             Debug.Log("v.x: " + cloneBody.velocity.x + " v.y: " + cloneBody.velocity.y);
             Debug.Log("Angle: " + angle);
             angle = angle + increment;
