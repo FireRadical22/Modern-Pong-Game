@@ -12,6 +12,7 @@ public class Goal : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Ball")) 
         {
+            Debug.Log("Object Tag: " + collision.gameObject.tag);
             if(!isPlayer1Goal) 
             {
                 Debug.Log("Player 1 Scored!");

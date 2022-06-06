@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: 379870172}
   - component: {fileID: 379870176}
   - component: {fileID: 379870177}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -644,9 +644,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags:
-  - Ball
-  - CurveBounce
-  - CollisionWallTag
+  - {fileID: 11400000, guid: e44b4277c1a6b42f7a19ef7eb6e03bfe, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  affectedObjects:
+  - {fileID: 0}
 --- !u!1 &399327423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,7 +1295,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1537,6 +1539,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1056837652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1056837654}
+  - component: {fileID: 1056837653}
+  m_Layer: 0
+  m_Name: RandomiserBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1056837653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056837652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894cfb68ae141d243b9f61414fc0cf0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  box: {fileID: 0}
+--- !u!4 &1056837654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056837652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1355129065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,6 +1601,7 @@ GameObject:
   - component: {fileID: 1355129071}
   - component: {fileID: 1355129072}
   - component: {fileID: 1355129074}
+  - component: {fileID: 1355129075}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -1682,7 +1730,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355129065}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 800aa6e1e473e4dd480020f304c2a2c0, type: 3}
   m_Name: 
@@ -1716,9 +1764,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e30806a8611344fdaa93d36a4cfc6d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ability: {fileID: 11400000, guid: e44b4277c1a6b42f7a19ef7eb6e03bfe, type: 2}
+  ability: {fileID: 11400000, guid: a41ea25c742e5412a80eb7c3be0a0f5d, type: 2}
   key: 117
-  player: {fileID: 1355129065}
+  player: {fileID: 379870171}
 --- !u!61 &1355129073
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1759,7 +1807,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ability: {fileID: 11400000, guid: 7787e012ae3eb034b99a160f363c37ca, type: 2}
   key: 106
-  affectedObject: {fileID: 0}
+  affectedObject: {fileID: 379870171}
+--- !u!114 &1355129075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355129065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9448079f82009234c8d5b51597aac585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  rb: {fileID: 1355129066}
+  startPosition: {x: 9, y: 0, z: 0}
 --- !u!1 &1581551319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2064,9 +2127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e30806a8611344fdaa93d36a4cfc6d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ability: {fileID: 11400000, guid: a41ea25c742e5412a80eb7c3be0a0f5d, type: 2}
+  ability: {fileID: 11400000, guid: e44b4277c1a6b42f7a19ef7eb6e03bfe, type: 2}
   key: 113
-  player: {fileID: 379870171}
+  player: {fileID: 1805348009}
 --- !u!61 &1805348017
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2105,6 +2168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4725078b056ef47bf2a04247f4f14d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ability: {fileID: 11400000, guid: b37e54a53bd7ab04aba42ef0df4e3cb2, type: 2}
+  ability: {fileID: 11400000, guid: c79d22691ac530f4eae72d53d403ab76, type: 2}
   key: 97
   affectedObject: {fileID: 379870171}
