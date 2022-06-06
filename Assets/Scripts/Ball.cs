@@ -7,6 +7,8 @@ public class Ball : MonoBehaviour
     public float speed;
     public Rigidbody2D rb;
     public Vector3 startPosition;
+    public bool isModifiedByPlayer1;
+    public bool isModifiedByPlayer2;
 
     // Start is called before the first frame update
     void Start()

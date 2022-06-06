@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class InvisBall : AbilityOnCollision
+public class InvisBall : CollisionAbility
 {
     public override void Activate(GameObject parent){
         SpriteRenderer sprite = parent.GetComponent<SpriteRenderer>();

@@ -8,6 +8,7 @@ TagManager:
   - CollisionWallTag
   - CurveBounce
   - Fake  Ball
+  - AbilityCatalogue
   layers:
   - Default
   - TransparentFX

@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class SlingshotAbility : Ability
+public class SlingshotAbility : TimeAbility
 {
     public float velocityScale;
-    
 
-    public override void Activate(GameObject parent)
+    public override void Activate(GameObject ball)
     {
-        Rigidbody2D rigidBody = parent.GetComponent<Rigidbody2D>();
-        rigidBody.velocity = new Vector2(rigidBody.velocity.x * velocityScale, rigidBody.velocity.y * velocityScale);
+        Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(rb.velocity.x * velocityScale, rb.velocity.y * velocityScale);
     }
 
-    public override void Deactivate(GameObject parent)
+    public override void Deactivate(GameObject ball)
     {
-        Rigidbody2D rigidBody = parent.GetComponent<Rigidbody2D>();
-        rigidBody.velocity = new Vector2(rigidBody.velocity.x / velocityScale, rigidBody.velocity.y / velocityScale);
+        Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(rb.velocity.x / velocityScale, rb.velocity.y / velocityScale);
     }
 }
