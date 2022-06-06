@@ -28,6 +28,9 @@ public class CollisionAbility : MonoBehaviour
         if (collider.gameObject.CompareTag("Ball") && GameState == States.active){
             GameState = States.activated;
             ability.Activate(affectedObject);
+        } else if (collider.gameObject.GetComponent<CustomTag>().HasTag("CollisionWallTag") && GameState == States.activated){
+            GameState = States.inactive;
+            ability.Deactivate(affectedObject);
         }
     }
 

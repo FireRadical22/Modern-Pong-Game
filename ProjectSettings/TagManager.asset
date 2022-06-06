@@ -7,7 +7,6 @@ TagManager:
   - Ball
   - CollisionWallTag
   - CurveBounce
-  - Fake  Ball
   layers:
   - Default
   - TransparentFX
@@ -15,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Ball Clones
-  - Ball
+  - 
+  - 
   - 
   - 
   - 
