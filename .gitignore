@@ -1,0 +1,12 @@
+Library
+Logs
+UserSettings
+obj
+Temp
+Assembly-CSharp.csproj
+
+# Visual Studio
+.vs
+.vsconfig
+Modern-Pong-Game.sln
+
