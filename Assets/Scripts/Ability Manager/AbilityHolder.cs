@@ -105,8 +105,8 @@ public class AbilityHolder : MonoBehaviour
 
     public void ResetAllAbilities()
     {
-        heldAbilities = new int[] { -1, -1, -1 };
         DisableAbility();
+        heldAbilities = new int[] { -1, -1, -1 };
         UpdateUI();
     }
 
@@ -147,7 +147,13 @@ public class AbilityHolder : MonoBehaviour
     {
         if (currentAbilityInUse != null)
         {
-            currentAbilityInUse.Deactivate(currentAffectedObject);
+            if (currentAbilityInUse is Impassable)
+            {
+                currentAbilityInUse.Deactivate(player);
+            } else 
+            {
+                currentAbilityInUse.Deactivate(currentAffectedObject);
+            }
         }
 
         if (currentAbilityInUseIndex != -1)
