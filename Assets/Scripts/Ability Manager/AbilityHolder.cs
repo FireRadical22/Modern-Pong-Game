@@ -25,13 +25,14 @@ public class AbilityHolder : MonoBehaviour
     private GameObject currentAffectedObject;
     private float timer;
 
-    private void Start()
+    public void Start()
     {
         //heldAbilities = new int[] { -1, -1, -1 }; //change this for debugging
         heldAbilities = new int[] { 0, 2, 3 };
         UpdateUI();
     }
-    private void Update()
+
+    public void Update()
     {
         if (!abilityIsActive)
         {
@@ -39,10 +40,9 @@ public class AbilityHolder : MonoBehaviour
             {
                 if (Input.GetKeyDown(InputKeys[i]) && HasAbility(i))
                 {
-                    currentAbilityInUse =
-                        catalogue
-                        .GetComponent<AbilityCatalogue>()
-                        .GetAbility(heldAbilities[i]);
+                    currentAbilityInUse = catalogue
+                                          .GetComponent<AbilityCatalogue>()
+                                          .GetAbility(heldAbilities[i]);
 
                     currentAbilityInUseIndex = i;
 

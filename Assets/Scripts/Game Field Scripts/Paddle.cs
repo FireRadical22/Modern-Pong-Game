@@ -11,10 +11,9 @@ public class Paddle : MonoBehaviour
 
     private float movement;
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        if(isPlayer1) 
+        if (isPlayer1) 
         {
             movement = Input.GetAxisRaw("Vertical");
         } 
@@ -26,7 +25,7 @@ public class Paddle : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, movement * speed);
     }
 
-    void Start() 
+    public void Start() 
     {
         startPosition = transform.position;
     }

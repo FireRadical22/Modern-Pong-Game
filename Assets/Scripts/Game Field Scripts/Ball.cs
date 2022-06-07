@@ -10,8 +10,7 @@ public class Ball : MonoBehaviour
     public bool isModifiedByPlayer1;
     public bool isModifiedByPlayer2;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         startPosition = transform.position;
         Launch();

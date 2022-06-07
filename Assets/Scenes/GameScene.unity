@@ -1439,6 +1439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer1Goal: 0
+  manager: {fileID: 63163997}
 --- !u!1 &728265733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2195,15 +2196,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputKeys: 750000006f00000070000000
+  AbilityIcons:
+  - {fileID: 283591918}
+  - {fileID: 821803050}
+  - {fileID: 1145074353}
   catalogue: {fileID: 577519346}
   isPlayer1: 0
   player: {fileID: 1355129065}
   otherPlayer: {fileID: 1805348009}
   ball: {fileID: 379870171}
-  AbilityIcons:
-  - {fileID: 283591918}
-  - {fileID: 821803050}
-  - {fileID: 1145074353}
   EMPTY: {fileID: 21300000, guid: 1347a0aa13e7d16458f7506d3e45a822, type: 3}
 --- !u!61 &1355129073
 BoxCollider2D:
@@ -2447,6 +2448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer1Goal: 1
+  manager: {fileID: 63163997}
 --- !u!1 &1805348009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2626,15 +2628,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputKeys: 710000006500000072000000
+  AbilityIcons:
+  - {fileID: 728265733}
+  - {fileID: 601970086}
+  - {fileID: 1369391194}
   catalogue: {fileID: 577519346}
   isPlayer1: 1
   player: {fileID: 1805348009}
   otherPlayer: {fileID: 1355129065}
   ball: {fileID: 379870171}
-  AbilityIcons:
-  - {fileID: 728265733}
-  - {fileID: 601970086}
-  - {fileID: 1369391194}
   EMPTY: {fileID: 21300000, guid: 1347a0aa13e7d16458f7506d3e45a822, type: 3}
 --- !u!61 &1805348017
 BoxCollider2D:
