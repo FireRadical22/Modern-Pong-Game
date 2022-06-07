@@ -46,25 +46,23 @@ public class AbilityHolder : MonoBehaviour
 
                 currentAbilityInUseIndex = i;
 
-                currentAffectedObject =
-                    catalogue
-                    .GetComponent<AbilityCatalogue>()
-                    .GetAffectedObject(heldAbilities[i]);
+                if (currentAbilityInUse is Impassable)
+                {
+                    currentAffectedObject = player;
+                }
+                else
+                {
+                    currentAffectedObject = catalogue
+                                            .GetComponent<AbilityCatalogue>()
+                                            .GetAffectedObject(heldAbilities[i]);
+                }
 
                 abilityIsActive = true;
 
                 if (currentAbilityInUse is TimeAbility)
                 {
-                    if (currentAbilityInUse is Impassable)
-                    {
-                        timer = 5; //Change this later, for some reason cannot access active time 
-                        currentAbilityInUse.Activate(player);
-                    }
-                    else
-                    {
-                        timer = 5; //Change this later, for some reason cannot access active time 
-                        currentAbilityInUse.Activate(currentAffectedObject);
-                    }
+                    timer = 5; //Change this later, for some reason cannot access active time 
+                    currentAbilityInUse.Activate(currentAffectedObject);
                 }
             }
         }
@@ -77,26 +75,7 @@ public class AbilityHolder : MonoBehaviour
 
                 if (timer <= 0)
                 {
-                    if (currentAbilityInUse is Impassable) // Placeholder until something better is found
-                    {
-                        currentAbilityInUse.Deactivate(player);
-                        if (currentAbilityInUseIndex != -1)
-                        {
-                            heldAbilities[currentAbilityInUseIndex] = -1;
-                        }
-
-                        currentAbilityInUse = null;
-                        currentAbilityInUseIndex = -1;
-                        abilityIsActive = false;
-                        currentAffectedObject = null;
-
-                        UpdateUI();
-
-                    } 
-                    else
-                    {
-                        DisableAbility();
-                    }
+                    DisableAbility();
                 }
 
             }
@@ -147,13 +126,7 @@ public class AbilityHolder : MonoBehaviour
     {
         if (currentAbilityInUse != null)
         {
-            if (currentAbilityInUse is Impassable)
-            {
-                currentAbilityInUse.Deactivate(player);
-            } else 
-            {
-                currentAbilityInUse.Deactivate(currentAffectedObject);
-            }
+            currentAbilityInUse.Deactivate(currentAffectedObject);
         }
 
         if (currentAbilityInUseIndex != -1)
