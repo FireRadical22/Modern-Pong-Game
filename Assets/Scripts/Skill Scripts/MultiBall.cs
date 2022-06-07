@@ -6,40 +6,34 @@ using UnityEngine;
 public class MultiBall : CollisionAbility
 {
     public int CloneCount;
+    private GameObject[] clones;
 
     public override void Activate(GameObject PreFab)
     {
-        float increment = 60 / CloneCount;
-        float angle = -30;
+        clones = new GameObject[CloneCount];
         int i = 0;
-        int realBall = (int) Random.Range(0, CloneCount);
-        while (i <= CloneCount)
+        
+        while (i < CloneCount)
         {
             GameObject clone = Object.Instantiate(PreFab, PreFab.transform.position, Quaternion.identity); 
-            if (i != realBall){
-                clone.tag = "Untagged";
-                clone.GetComponent<SpriteRenderer>().color = Color.gray;
-            }
+            clone.tag = "Untagged";
+            clone.GetComponent<SpriteRenderer>().color = Color.gray;
+            
             Rigidbody2D cloneBody = clone.GetComponent<Rigidbody2D>();
-            //rotateVector(cloneBody.velocity, angle);
-            cloneBody.velocity = new Vector2(10, i * 5);
-            Debug.Log("v.x: " + cloneBody.velocity.x + " v.y: " + cloneBody.velocity.y);
-            Debug.Log("Angle: " + angle);
-            angle = angle + increment;
+            
+            cloneBody.AddForce(new Vector2(0, (i+1) * 50), ForceMode2D.Force);
+            clones[i] = clone;
             i++;
         }
 
-        Deactivate(PreFab);
+        
     }
 
     public override void Deactivate(GameObject affectedObject)
     {
-        Destroy(affectedObject);
-    }
-
-    private void rotateVector(Vector2 vector, float angle)
-    {
-        vector.x = Mathf.Cos(angle) * vector.x - Mathf.Sin(angle) * vector.y;
-        vector.y = Mathf.Sin(angle) * vector.x + Mathf.Cos(angle) * vector.y;
+        for (int j = 0; j < CloneCount; j++)
+        {   
+            Destroy(clones[j]);
+        }
     }
 }
