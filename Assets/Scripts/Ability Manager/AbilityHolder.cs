@@ -8,15 +8,14 @@ public class AbilityHolder : MonoBehaviour
     [SerializeField]
     public KeyCode[] InputKeys;
 
+    [SerializeField]
+    public GameObject[] AbilityIcons;
+
     public GameObject catalogue;
     public bool isPlayer1;
     public GameObject player;
     public GameObject otherPlayer;
     public GameObject ball;
-
-    [SerializeField]
-    public GameObject[] AbilityIcons;
-
     public Sprite EMPTY;
 
     private int[] heldAbilities;
@@ -24,7 +23,6 @@ public class AbilityHolder : MonoBehaviour
     private Ability currentAbilityInUse;
     private bool abilityIsActive;
     private GameObject currentAffectedObject;
-
     private float timer;
 
     private void Start()
@@ -35,39 +33,41 @@ public class AbilityHolder : MonoBehaviour
     }
     private void Update()
     {
-        for (int i = 0; i < InputKeys.Length; i++)
+        if (!abilityIsActive)
         {
-            if (Input.GetKeyDown(InputKeys[i]) && HasAbility(i) && !abilityIsActive)
+            for (int i = 0; i < InputKeys.Length; i++)
             {
-                currentAbilityInUse =
-                    catalogue
-                    .GetComponent<AbilityCatalogue>()
-                    .GetAbility(heldAbilities[i]);
-
-                currentAbilityInUseIndex = i;
-
-                if (currentAbilityInUse is Impassable)
+                if (Input.GetKeyDown(InputKeys[i]) && HasAbility(i))
                 {
-                    currentAffectedObject = player;
-                }
-                else
-                {
-                    currentAffectedObject = catalogue
-                                            .GetComponent<AbilityCatalogue>()
-                                            .GetAffectedObject(heldAbilities[i]);
-                }
+                    currentAbilityInUse =
+                        catalogue
+                        .GetComponent<AbilityCatalogue>()
+                        .GetAbility(heldAbilities[i]);
 
-                abilityIsActive = true;
+                    currentAbilityInUseIndex = i;
 
-                if (currentAbilityInUse is TimeAbility)
-                {
-                    timer = 5; //Change this later, for some reason cannot access active time 
-                    currentAbilityInUse.Activate(currentAffectedObject);
+                    if (currentAbilityInUse is Impassable)
+                    {
+                        currentAffectedObject = player;
+                    }
+                    else
+                    {
+                        currentAffectedObject = catalogue
+                                                .GetComponent<AbilityCatalogue>()
+                                                .GetAffectedObject(heldAbilities[i]);
+                    }
+
+                    abilityIsActive = true;
+
+                    if (currentAbilityInUse is TimeAbility)
+                    {
+                        timer = 5; //Change this later, for some reason cannot access active time 
+                        currentAbilityInUse.Activate(currentAffectedObject);
+                    }
                 }
             }
         }
-
-        if (abilityIsActive)
+        else
         {
             if (currentAbilityInUse is TimeAbility)
             {
@@ -77,7 +77,6 @@ public class AbilityHolder : MonoBehaviour
                 {
                     DisableAbility();
                 }
-
             }
         }
     }
@@ -139,8 +138,6 @@ public class AbilityHolder : MonoBehaviour
         abilityIsActive = false;
         currentAffectedObject = null;
 
-        UpdateUI();
-
         if (isPlayer1)
         {
             ball.GetComponent<Ball>().isModifiedByPlayer1 = false;
@@ -149,6 +146,8 @@ public class AbilityHolder : MonoBehaviour
         {
             ball.GetComponent<Ball>().isModifiedByPlayer2 = false;
         }
+
+        UpdateUI();
     }
 
     public void UpdateUI()
@@ -161,10 +160,9 @@ public class AbilityHolder : MonoBehaviour
             }
             else
             {
-                AbilityIcons[i].GetComponent<Image>().sprite = 
-                    catalogue
-                    .GetComponent<AbilityCatalogue>()
-                    .GetIcon(heldAbilities[i]);
+                AbilityIcons[i].GetComponent<Image>().sprite = catalogue
+                                                               .GetComponent<AbilityCatalogue>()
+                                                               .GetIcon(heldAbilities[i]);
             }
 
         }
