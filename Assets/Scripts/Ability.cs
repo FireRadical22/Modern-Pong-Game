@@ -5,7 +5,8 @@ using UnityEngine;
 public abstract class Ability : ScriptableObject
 {
     public new string name;
+    public float activeTime;
 
-    public virtual void Activate(GameObject affectedObject) {}
-    public virtual void Deactivate(GameObject affectedObject) {}
+    public virtual void Activate(GameObject player) {}
+    public virtual void Deactivate(GameObject player) {}
 }

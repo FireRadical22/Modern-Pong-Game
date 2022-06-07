@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class Impassable : TimeAbility
+public class ImpassableAbility : Ability
 {
     public float scaleFactor;
     

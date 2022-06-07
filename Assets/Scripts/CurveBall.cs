@@ -4,7 +4,7 @@ using System.Threading;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class CurveBall : CollisionAbility
+public class CurveBall : AbilityOnCollision
 {
     public float gravity;
 

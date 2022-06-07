@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class MultiBall : CollisionAbility
+public class MultiBall : AbilityOnCollision
 {
     public int CloneCount;
 

@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class TimeAbility : Ability
+public class TimeAbility : MonoBehaviour
 {
-    public int activeTime;
-
-    public float getActiveTime()
+    // Start is called before the first frame update
+    void Start()
     {
-        return activeTime;
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }
