@@ -5,7 +5,7 @@ using UnityEngine;
 public class AbilityCatalogue : MonoBehaviour
 {
     [SerializeField]
-    private List<Ability> catalogue = new List<Ability>();
+    public List<Ability> catalogue = new List<Ability>();
 
     [SerializeField]
     private List<GameObject> affectedObjects = new List<GameObject>();

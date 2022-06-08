@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     public Vector3 startPosition;
     public bool isModifiedByPlayer1;
     public bool isModifiedByPlayer2;
+    public bool lastHitByPlayer1;
 
     public void Start()
     {

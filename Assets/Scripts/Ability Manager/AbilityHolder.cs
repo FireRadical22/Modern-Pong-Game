@@ -34,7 +34,8 @@ public class AbilityHolder : MonoBehaviour
     public void Start()
     {
         //heldAbilities = new int[] { -1, -1, -1 }; //change this for debugging
-        heldAbilities = new int[] { 0, 2, 3 };
+        heldAbilities = new int[] { 0, 0, 0 };
+
         UpdateUI();
         UpdateKeycodeUI();
     }
@@ -199,6 +200,19 @@ public class AbilityHolder : MonoBehaviour
         for (int i = 0; i < KeycodeIcons.Length; i++)
         {
             KeycodeIcons[i].GetComponent<TextMeshProUGUI>().text = InputKeys[i].ToString();
+        }
+    }
+
+    public void GrantAbility(int ability)
+    {
+        for (int i = 0; i < heldAbilities.Length; i++)
+        {
+            if (!HasAbility(i))
+            {
+                heldAbilities[i] = ability;
+                UpdateUI();
+                return;
+            }
         }
     }
 

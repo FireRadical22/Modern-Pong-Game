@@ -8,6 +8,7 @@ TagManager:
   - CollisionWallTag
   - CurveBounce
   - Fake  Ball
+  - AbilityCatalogue
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - Ball Clones
   - Ball
   - Paddle
-  - 
-  - 
+  - Ability Icon
+  - Ability Background
   - 
   - 
   - 
@@ -44,4 +45,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ability Icon
+    uniqueID: 1512778563
+    locked: 0
+  - name: Ability Background
+    uniqueID: 1581760993
     locked: 0

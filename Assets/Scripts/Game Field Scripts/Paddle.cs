@@ -35,4 +35,15 @@ public class Paddle : MonoBehaviour
         rb.velocity = Vector2.zero;
         transform.position = startPosition;
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        bool isCollisionWithBall = collision.gameObject.CompareTag("Ball");
+
+        if (isCollisionWithBall)
+        {
+            collision.GetComponent<Ball>().lastHitByPlayer1 = isPlayer1;
+        }
+
+    }
 }
