@@ -21,10 +21,12 @@ public class AbilityHolder : MonoBehaviour
     public GameObject otherPlayer;
     public GameObject ball;
     public Sprite EMPTY;
+    public float timeAbilityActiveTime;
 
     private int[] heldAbilities;
     private int currentAbilityInUseIndex;
     private Ability currentAbilityInUse;
+    private Image currentAbilityIcon;
     private bool abilityIsActive;
     private GameObject currentAffectedObject;
     private float timer;
@@ -62,12 +64,19 @@ public class AbilityHolder : MonoBehaviour
                                                 .GetAffectedObject(heldAbilities[i]);
                     }
 
+                    currentAbilityIcon = AbilityIcons[i].GetComponent<Image>();
+
                     abilityIsActive = true;
 
                     if (currentAbilityInUse is TimeAbility)
                     {
-                        timer = 5; //Change this later, for some reason cannot access active time 
+                        timer = timeAbilityActiveTime; //Change this later, for some reason cannot access active time 
                         currentAbilityInUse.Activate(currentAffectedObject);
+                        currentAbilityIcon.fillAmount = 1;
+                    }
+                    else
+                    {
+                        currentAbilityIcon.color = new Color32(0, 255, 0, 255);
                     }
                 }
             }
@@ -77,6 +86,7 @@ public class AbilityHolder : MonoBehaviour
             if (currentAbilityInUse is TimeAbility)
             {
                 timer -= Time.deltaTime;
+                currentAbilityIcon.fillAmount -= (1 / timeAbilityActiveTime) * Time.deltaTime;
 
                 if (timer <= 0)
                 {
@@ -133,6 +143,11 @@ public class AbilityHolder : MonoBehaviour
             currentAbilityInUse.Deactivate(currentAffectedObject);
         }
 
+        if (currentAbilityInUse is CollisionAbility)
+        {
+            currentAbilityIcon.color = new Color32(255, 255, 255, 255);
+        }
+
         if (currentAbilityInUseIndex != -1)
         {
             heldAbilities[currentAbilityInUseIndex] = -1;
@@ -142,6 +157,7 @@ public class AbilityHolder : MonoBehaviour
         currentAbilityInUseIndex = -1;
         abilityIsActive = false;
         currentAffectedObject = null;
+        currentAbilityIcon = null;
 
         if (isPlayer1)
         {
