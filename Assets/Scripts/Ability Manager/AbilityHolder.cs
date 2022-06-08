@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AbilityHolder : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class AbilityHolder : MonoBehaviour
 
     [SerializeField]
     public GameObject[] AbilityIcons;
+
+    [SerializeField]
+    public GameObject[] KeycodeIcons;
 
     public GameObject catalogue;
     public bool isPlayer1;
@@ -30,6 +34,7 @@ public class AbilityHolder : MonoBehaviour
         //heldAbilities = new int[] { -1, -1, -1 }; //change this for debugging
         heldAbilities = new int[] { 0, 2, 3 };
         UpdateUI();
+        UpdateKeycodeUI();
     }
 
     public void Update()
@@ -171,6 +176,14 @@ public class AbilityHolder : MonoBehaviour
     private bool HasAbility(int i)
     {
         return heldAbilities[i] != -1;
+    }
+
+    private void UpdateKeycodeUI()
+    {
+        for (int i = 0; i < KeycodeIcons.Length; i++)
+        {
+            KeycodeIcons[i].GetComponent<TextMeshProUGUI>().text = InputKeys[i].ToString();
+        }
     }
 
 }
