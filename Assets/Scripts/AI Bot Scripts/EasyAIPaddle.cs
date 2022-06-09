@@ -8,30 +8,14 @@ public class EasyAIPaddle : MonoBehaviour
     public Rigidbody2D rb;
     public Vector3 startPosition;
 
+    public GameObject ObjectTracking;
+    private Vector2 ballPos;
+
     // Update is called once per frame
     void Update()
     {
-        //AI Movement
-        GameObject ball = GameObject.Find("Ball");
-        float yPaddle = rb.position.y;
-        float distance = ball.transform.position.y - yPaddle;
-        if (distance > 5.0)
-        {
-            while (Mathf.Abs(yPaddle - ball.transform.position.y) > 2.0)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, speed);
-            }
-        } else if (distance < -5.0)
-        {
-            while (Mathf.Abs(yPaddle- ball.transform.position.y) < -2.0)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, -1 * speed);
-            }
-        } else 
-        {
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-        }
-        
+        Move();
+
     }
 
     void Start() 
@@ -44,4 +28,20 @@ public class EasyAIPaddle : MonoBehaviour
         rb.velocity = Vector2.zero;
         transform.position = startPosition;
     }
+
+    private void Move()
+    {
+        ballPos = ObjectTracking.transform.localPosition;
+        if (transform.localPosition.y > ballPos.y)
+        {
+            transform.localPosition += new Vector3(0, -speed * Time.deltaTime, 0);
+        } else if (transform.localPosition.y < ballPos.y)
+        {
+            transform.localPosition += new Vector3(0, speed * Time.deltaTime, 0);
+        } else 
+        {
+            transform.localPosition += Vector3.zero;
+        }
+    }
 }
+

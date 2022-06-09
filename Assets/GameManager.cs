@@ -46,7 +46,13 @@ public class GameManager : MonoBehaviour
         Ball.GetComponent<Ball>().Reset();
         Ball.GetComponent<SpriteRenderer>().enabled = true;
         Player1Paddle.GetComponent<Paddle>().Reset();
-        Player2Paddle.GetComponent<Paddle>().Reset();
+        if (Player2Paddle.GetComponent<Paddle>().isActiveAndEnabled == true)
+        {
+            Player2Paddle.GetComponent<Paddle>().Reset();
+        } else 
+        {
+            Player2Paddle.GetComponent<EasyAIPaddle>().Reset();
+        }
     }
     
 }
