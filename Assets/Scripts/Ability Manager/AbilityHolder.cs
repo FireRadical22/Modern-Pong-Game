@@ -22,6 +22,7 @@ public class AbilityHolder : MonoBehaviour
     public GameObject ball;
     public Sprite EMPTY;
     public float timeAbilityActiveTime;
+    public bool isBot;
 
     private int[] heldAbilities;
     private int currentAbilityInUseIndex;
@@ -34,7 +35,7 @@ public class AbilityHolder : MonoBehaviour
     public void Start()
     {
         //heldAbilities = new int[] { -1, -1, -1 }; //change this for debugging
-        heldAbilities = new int[] { 0, 0, 0 };
+        heldAbilities = new int[] { 2, 2, 2 };
 
         UpdateUI();
         UpdateKeycodeUI();
@@ -119,7 +120,14 @@ public class AbilityHolder : MonoBehaviour
 
         if (ballIsModifiedByOtherPlayer)
         {
-            otherPlayer.GetComponent<AbilityHolder>().DisableAbility();
+            if (isBot)
+            {
+                otherPlayer.GetComponent<AIAbilityHolder>().DisableAbility();
+            }
+            else
+            {
+                otherPlayer.GetComponent<AbilityHolder>().DisableAbility();
+            }
         }
 
         if (abilityIsActive && currentAbilityInUse is CollisionAbility)
@@ -137,7 +145,7 @@ public class AbilityHolder : MonoBehaviour
         }
     }
 
-    private void DisableAbility()
+    public void DisableAbility()
     {
         if (currentAbilityInUse != null)
         {

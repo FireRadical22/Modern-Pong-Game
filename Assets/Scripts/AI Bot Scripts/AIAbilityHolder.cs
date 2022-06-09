@@ -35,7 +35,7 @@ public class AIAbilityHolder : MonoBehaviour
     public void Start()
     {
         //heldAbilities = new int[] { -1, -1, -1 }; //change this for debugging
-        heldAbilities = new int[] { 0, 0, 0 };
+        heldAbilities = new int[] { 1, 0, 0 };
 
         UpdateUI();
         //UpdateKeycodeUI();
@@ -82,10 +82,12 @@ public class AIAbilityHolder : MonoBehaviour
                     {
                         currentAbilityIcon.color = new Color32(0, 255, 0, 255);
                     }
-                } else 
+                } 
+                else 
                 {
                     SlotChosen = FirstAvailAbility();
-                    if (SlotChosen < 0){
+                    if (SlotChosen < 0)
+                    {
                         return;
                     }
                 }
@@ -126,7 +128,7 @@ public class AIAbilityHolder : MonoBehaviour
 
         if (ballIsModifiedByOtherPlayer)
         {
-            otherPlayer.GetComponent<AIAbilityHolder>().DisableAbility();
+            otherPlayer.GetComponent<AbilityHolder>().DisableAbility();
         }
 
         if (abilityIsActive && currentAbilityInUse is CollisionAbility)
@@ -144,7 +146,7 @@ public class AIAbilityHolder : MonoBehaviour
         }
     }
 
-    private void DisableAbility()
+    public void DisableAbility()
     {
         if (currentAbilityInUse != null)
         {
@@ -210,7 +212,7 @@ public class AIAbilityHolder : MonoBehaviour
     //    }
     //}
 
-    public void GetAbility(int ability)
+    public void GrantAbility(int ability)
     {
         for (int i = 0; i < heldAbilities.Length; i++)
         {

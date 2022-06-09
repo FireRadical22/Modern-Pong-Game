@@ -9,6 +9,7 @@ public class ItemBox : MonoBehaviour
     public GameObject catalogue;
     public GameObject itemBox;
     public float cooldown;
+    public bool isSingleplayer;
 
     private int numberOfAbilities;
     private float timer;
@@ -52,18 +53,23 @@ public class ItemBox : MonoBehaviour
             {
                 player1.GetComponent<AbilityHolder>().GrantAbility(RandomAbility());
             }
-            //else if (isBot())
-            //{
-            //    player2.GetComponent<AIAbilityHolder>().GrantAbility(RandomAbility());
-            //}
             else
             {
+                if (isSingleplayer)
+                {
+                    player2.GetComponent<AIAbilityHolder>().GrantAbility(RandomAbility());
+                }
+                else
+                {
+                    player2.GetComponent<AbilityHolder>().GrantAbility(RandomAbility());
+                }
+
                 //if (player2.GetComponent<AIAbilityHolder>().isActiveAndEnabled == true)
                 //{
                 //   player2.GetComponent<AIAbilityHolder>().GrantAbility(RandomAbility());
                 //} else 
                 //{
-                player2.GetComponent<AIAbilityHolder>().GetAbility(RandomAbility());
+                
                 //}
             }
 

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject Player1Text;
     public GameObject Player2Text;
 
+    public bool isSingleplayer;
     private int Player1Score;
     private int Player2Score;
 
@@ -28,11 +29,13 @@ public class GameManager : MonoBehaviour
         Player1Score++;
         Player1Text.GetComponent<TextMeshProUGUI>().text = Player1Score.ToString();
         Player1Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
-        if (Player2Paddle.GetComponent<AbilityHolder>().isActiveAndEnabled){
-            Player2Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
-        } else 
+        if (isSingleplayer)
         {
             Player2Paddle.GetComponent<AIAbilityHolder>().ResetAllAbilities();
+        } 
+        else 
+        {
+            Player2Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
         }
         ResetPosition();
     }
@@ -42,11 +45,13 @@ public class GameManager : MonoBehaviour
         Player2Score++;
         Player2Text.GetComponent<TextMeshProUGUI>().text = Player2Score.ToString();
         Player1Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
-        if (Player2Paddle.GetComponent<AbilityHolder>().isActiveAndEnabled == true){
-            Player2Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
-        } else 
-        {
+        if (isSingleplayer)
+        { 
             Player2Paddle.GetComponent<AIAbilityHolder>().ResetAllAbilities();
+        } 
+        else 
+        {
+            Player2Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
         }
         ResetPosition();
     }
@@ -56,24 +61,14 @@ public class GameManager : MonoBehaviour
         Ball.GetComponent<Ball>().Reset();
         Ball.GetComponent<SpriteRenderer>().enabled = true;
         Player1Paddle.GetComponent<Paddle>().Reset();
-        if (Player2Paddle.GetComponent<Paddle>().isActiveAndEnabled == true)
-        {
-            Player2Paddle.GetComponent<Paddle>().Reset();
-        } else 
+        if (isSingleplayer)
         {
             Player2Paddle.GetComponent<EasyAIPaddle>().Reset();
+        } 
+        else 
+        {
+            Player2Paddle.GetComponent<Paddle>().Reset();
         }
     }
-
-    //private void isSinglePlayer()
-    //{
-    //    Player1Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
-    //    if (Player2Paddle.GetComponent<AbilityHolder>().isActiveAndEnabled){
-    //        Player2Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
-    //    } else 
-    //    {
-    //        Player2Paddle.GetComponent<AIAbilityHolder>().ResetAllAbilities();
-    //    }
-    //}
     
 }

@@ -174,6 +174,7 @@ MonoBehaviour:
   Player2Goal: {fileID: 603056814}
   Player1Text: {fileID: 182295943}
   Player2Text: {fileID: 401676290}
+  isSingleplayer: 1
 --- !u!1 &182295943
 GameObject:
   m_ObjectHideFlags: 0
@@ -3097,7 +3098,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355129065}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62133f4daf70bc044963999803692b4f, type: 3}
   m_Name: 
@@ -3798,6 +3799,7 @@ MonoBehaviour:
   ball: {fileID: 379870171}
   EMPTY: {fileID: 21300000, guid: 1347a0aa13e7d16458f7506d3e45a822, type: 3}
   timeAbilityActiveTime: 5
+  isBot: 0
 --- !u!61 &1805348017
 BoxCollider2D:
   m_ObjectHideFlags: 0
