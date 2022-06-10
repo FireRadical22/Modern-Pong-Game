@@ -5,14 +5,11 @@ using UnityEngine.UI;
 
 public class AIAbilityHolder : MonoBehaviour
 {
-    //[SerializeField]
-    //public KeyCode[] InputKeys;
+    [SerializeField]
+    public KeyCode[] InputKeys;
 
     [SerializeField]
     public GameObject[] AbilityIcons;
-
-    //[SerializeField]
-    //public GameObject[] KeycodeIcons;
 
     public GameObject catalogue;
     public bool isPlayer1;
@@ -21,6 +18,7 @@ public class AIAbilityHolder : MonoBehaviour
     public GameObject ball;
     public Sprite EMPTY;
     public float timeAbilityActiveTime;
+    public bool isBot;
 
     private int[] heldAbilities;
     private int currentAbilityInUseIndex;
@@ -29,33 +27,30 @@ public class AIAbilityHolder : MonoBehaviour
     private bool abilityIsActive;
     private GameObject currentAffectedObject;
     private float timer;
-
-    private int SlotChosen = -1;
+    
 
     public void Start()
     {
         //heldAbilities = new int[] { -1, -1, -1 }; //change this for debugging
-        heldAbilities = new int[] { 1, 0, 0 };
+        heldAbilities = new int[] { 2, 2, 2 };
 
         UpdateUI();
-        //UpdateKeycodeUI();
+       
     }
 
     public void Update()
     {
         if (!abilityIsActive)
         {
-            //for (int i = 0; i < heldAbilities.Length; i++)
-            //{
-            while (SlotChosen >= 0)
+            for (int i = 0; i < InputKeys.Length; i++)
             {
-                if (HasAbility(SlotChosen))
+                if (!(AIControl(InputKeys[i])) && HasAbility(i))
                 {
                     currentAbilityInUse = catalogue
                                           .GetComponent<AbilityCatalogue>()
-                                          .GetAbility(heldAbilities[SlotChosen]);
+                                          .GetAbility(heldAbilities[i]);
 
-                    currentAbilityInUseIndex = SlotChosen;
+                    currentAbilityInUseIndex = i;
 
                     if (currentAbilityInUse is Impassable)
                     {
@@ -65,10 +60,10 @@ public class AIAbilityHolder : MonoBehaviour
                     {
                         currentAffectedObject = catalogue
                                                 .GetComponent<AbilityCatalogue>()
-                                                .GetAffectedObject(heldAbilities[SlotChosen]);
+                                                .GetAffectedObject(heldAbilities[i]);
                     }
 
-                    currentAbilityIcon = AbilityIcons[SlotChosen].GetComponent<Image>();
+                    currentAbilityIcon = AbilityIcons[i].GetComponent<Image>();
 
                     abilityIsActive = true;
 
@@ -82,27 +77,22 @@ public class AIAbilityHolder : MonoBehaviour
                     {
                         currentAbilityIcon.color = new Color32(0, 255, 0, 255);
                     }
-                } 
-                else 
-                {
-                    SlotChosen = FirstAvailAbility();
-                    if (SlotChosen < 0)
-                    {
-                        return;
-                    }
+                    break;
                 }
             }
         }
-        else if (currentAbilityInUse is TimeAbility)
+        else
         {
-            timer -= Time.deltaTime;
-            currentAbilityIcon.fillAmount -= (1 / timeAbilityActiveTime) * Time.deltaTime;
-
-            if (timer <= 0)
+            if (currentAbilityInUse is TimeAbility)
             {
-                DisableAbility();
+                timer -= Time.deltaTime;
+                currentAbilityIcon.fillAmount -= (1 / timeAbilityActiveTime) * Time.deltaTime;
+
+                if (timer <= 0)
+                {
+                    DisableAbility();
+                }
             }
-            
         }
     }
 
@@ -122,11 +112,7 @@ public class AIAbilityHolder : MonoBehaviour
 
         Ball ballComponent = collider.gameObject.GetComponent<Ball>();
 
-        bool ballIsModifiedByOtherPlayer = 
-            isPlayer1 ? ballComponent.isModifiedByPlayer2
-                      : ballComponent.isModifiedByPlayer1;
-
-        if (ballIsModifiedByOtherPlayer)
+        if (ballComponent.isModifiedByPlayer1) 
         {
             otherPlayer.GetComponent<AbilityHolder>().DisableAbility();
         }
@@ -201,16 +187,8 @@ public class AIAbilityHolder : MonoBehaviour
 
     private bool HasAbility(int i)
     {
-        return heldAbilities[i] != -1 || i < 0 || i > heldAbilities.Length;
+        return heldAbilities[i] != -1;
     }
-
-    //private void UpdateKeycodeUI()
-    //{
-    //    for (int i = 0; i < KeycodeIcons.Length; i++)
-    //    {
-    //        KeycodeIcons[i].GetComponent<TextMeshProUGUI>().text = InputKeys[i].ToString();
-    //    }
-    //}
 
     public void GrantAbility(int ability)
     {
@@ -225,16 +203,13 @@ public class AIAbilityHolder : MonoBehaviour
         }
     }
 
-    private int FirstAvailAbility()
+    private bool AIControl(KeyCode key)
     {
-        for (int i = 0; i < heldAbilities.Length; i++)
+        if (Input.GetKeyDown(key))
         {
-            if (HasAbility(i))
-            {
-                return i;
-            }
+            return false;
         }
 
-        return -1;
+        return false;
     }
 }

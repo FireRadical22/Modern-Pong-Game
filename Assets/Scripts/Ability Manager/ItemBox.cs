@@ -63,14 +63,6 @@ public class ItemBox : MonoBehaviour
                 {
                     player2.GetComponent<AbilityHolder>().GrantAbility(RandomAbility());
                 }
-
-                //if (player2.GetComponent<AIAbilityHolder>().isActiveAndEnabled == true)
-                //{
-                //   player2.GetComponent<AIAbilityHolder>().GrantAbility(RandomAbility());
-                //} else 
-                //{
-                
-                //}
             }
 
             SetItemBoxActiveState(false);
@@ -90,10 +82,4 @@ public class ItemBox : MonoBehaviour
         itemBox.GetComponent<SpriteRenderer>().enabled = active;
         itemBoxIsActive = active;
     }
-
-    //private bool isBot()
-    //{
-    //    return player2.GetComponent<AIAbilityHolder>().isActiveAndEnabled; 
-    //}
-
 }
