@@ -10,6 +10,8 @@ public class EasyAIPaddle : MonoBehaviour
 
     public GameObject ObjectTracking;
     private Vector2 ballPos;
+    private static float lowerBound = -3.5f;
+    private static float upperBound = 3.5f;
 
     // Update is called once per frame
     void Update()
@@ -32,10 +34,10 @@ public class EasyAIPaddle : MonoBehaviour
     private void Move()
     {
         ballPos = ObjectTracking.transform.localPosition;
-        if (transform.localPosition.y > ballPos.y)
+        if (transform.localPosition.y > ballPos.y && transform.localPosition.y > lowerBound)
         {
             transform.localPosition += new Vector3(0, -speed * Time.deltaTime, 0);
-        } else if (transform.localPosition.y < ballPos.y)
+        } else if (transform.localPosition.y < ballPos.y && transform.localPosition.y < upperBound)
         {
             transform.localPosition += new Vector3(0, speed * Time.deltaTime, 0);
         } else 
