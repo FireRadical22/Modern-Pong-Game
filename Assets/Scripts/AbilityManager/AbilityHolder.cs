@@ -34,7 +34,7 @@ public class AbilityHolder : MonoBehaviour
 
     public void Start()
     {
-        heldAbilities = new int[] { -1, -1, -1 }; //change this for debugging
+        heldAbilities = new int[] { 0, -1, -1 }; //change this for debugging
 
         UpdateUI();
         UpdateKeycodeUI();
@@ -185,13 +185,14 @@ public class AbilityHolder : MonoBehaviour
         {
             if (heldAbilities[i] == -1)
             {
-                AbilityIcons[i].GetComponent<Image>().sprite = EMPTY;
+                AbilityIcons[i].GetComponent<Image>().fillAmount = 0;
             }
             else
             {
                 AbilityIcons[i].GetComponent<Image>().sprite = catalogue
                                                                .GetComponent<AbilityCatalogue>()
                                                                .GetIcon(heldAbilities[i]);
+                AbilityIcons[i].GetComponent<Image>().fillAmount = 1;
             }
 
         }
