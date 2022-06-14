@@ -16,7 +16,7 @@ public class MultiBall : CollisionAbility
         while (i < CloneCount)
         {
             GameObject clone = Object.Instantiate(PreFab, PreFab.transform.position, Quaternion.identity); 
-            clone.tag = "Untagged";
+            clone.tag = "Fake Ball";
             clone.GetComponent<SpriteRenderer>().color = new Color(1.0f,1.0f, 1.0f, 0.9f);
             
             Rigidbody2D cloneBody = clone.GetComponent<Rigidbody2D>();
