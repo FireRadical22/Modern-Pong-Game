@@ -31,7 +31,7 @@ public class AIAbilityHolder : MonoBehaviour
 
     public void Start()
     {
-        heldAbilities = new int[] { -1, -1, -1 }; //change this for debugging
+        heldAbilities = new int[] { 3, 3, 3 }; //change this for debugging
 
         UpdateUI();
        
