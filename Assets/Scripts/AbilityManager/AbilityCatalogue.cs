@@ -5,13 +5,17 @@ using UnityEngine;
 public class AbilityCatalogue : MonoBehaviour
 {
     [SerializeField]
-    public List<Ability> catalogue = new List<Ability>();
+    public List<Ability> catalogue = new();
 
     [SerializeField]
-    private List<GameObject> affectedObjects = new List<GameObject>();
+    public List<GameObject> affectedObjects = new();
 
     [SerializeField]
-    private List<Sprite> icons = new List<Sprite>();
+    public List<Sprite> icons = new();
+
+    [SerializeField]
+    public List<string> abilityDescriptions = new();
+
 
     public Sprite GetIcon(int i)
     {
@@ -26,6 +30,11 @@ public class AbilityCatalogue : MonoBehaviour
     public Ability GetAbility(int i)
     {
         return catalogue[i];
+    }
+
+    public string GetDescription(int i)
+    {
+        return abilityDescriptions[i];
     }
 
 }

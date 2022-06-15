@@ -38,7 +38,7 @@ public class ItemBox : MonoBehaviour
 
     public int RandomAbility()
     {
-        return Random.Range(0, numberOfAbilities - 1);
+        return Random.Range(0, numberOfAbilities);
     }
 
     public void OnTriggerEnter2D(Collider2D collider)
@@ -72,7 +72,7 @@ public class ItemBox : MonoBehaviour
 
     private void RandomisePosition()
     {
-        Vector3 randomPosition = new Vector3(Random.Range(-5, 5), Random.Range(-3, 3), 0);
+        Vector3 randomPosition = new Vector3(Random.Range(-4, 4), Random.Range(-3, 3), 0);
         transform.position = randomPosition;
     }
 

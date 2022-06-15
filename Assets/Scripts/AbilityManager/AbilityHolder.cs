@@ -6,25 +6,29 @@ using TMPro;
 
 public class AbilityHolder : MonoBehaviour
 {
-    [SerializeField]
-    public KeyCode[] InputKeys;
+    public KeyCode changeAbilitySlotKey;
+    public KeyCode activateAbilityKey;
 
-    [SerializeField]
     public GameObject[] AbilityIcons;
-
-    [SerializeField]
-    public GameObject[] KeycodeIcons;
+    public GameObject[] AbilityBorders;
+    public GameObject controlsInfo;
+    public GameObject InfoBox;
+    public GameObject InfoText;
 
     public GameObject catalogue;
+
+    public bool isBot;
     public bool isPlayer1;
     public GameObject player;
     public GameObject otherPlayer;
     public GameObject ball;
-    public Sprite EMPTY;
     public float timeAbilityActiveTime;
-    public bool isBot;
+
+    public Sprite ABILITYSELECTED;
+    public Sprite ABILITYNOTSELECTED;
 
     private int[] heldAbilities;
+    private int currentSelectedAbility;
     private int currentAbilityInUseIndex;
     private Ability currentAbilityInUse;
     private Image currentAbilityIcon;
@@ -34,51 +38,57 @@ public class AbilityHolder : MonoBehaviour
 
     public void Start()
     {
-        heldAbilities = new int[] { 3, -1, -1 }; //change this for debugging
+        heldAbilities = new int[] { -1, -1, -1 };
+        UpdateAbilityUI();
+        UpdateControlsInfo();
+        currentSelectedAbility = 0;
+    }
 
-        UpdateUI();
-        UpdateKeycodeUI();
+    private void UpdateControlsInfo()
+    {
+        string displayText = changeAbilitySlotKey.ToString() + " to Change Ability"
+                    + "\n" + activateAbilityKey.ToString() + " to Activate Ability";
+
+
+        controlsInfo.GetComponent<TextMeshProUGUI>().text = displayText;
     }
 
     public void Update()
     {
         if (!abilityIsActive)
         {
-            for (int i = 0; i < InputKeys.Length; i++)
+            if (Input.GetKeyDown(activateAbilityKey) && HasAbility(currentSelectedAbility))
             {
-                if (Input.GetKeyDown(InputKeys[i]) && HasAbility(i))
+                currentAbilityInUse = catalogue
+                                        .GetComponent<AbilityCatalogue>()
+                                        .GetAbility(heldAbilities[currentSelectedAbility]);
+
+                currentAbilityInUseIndex = currentSelectedAbility;
+
+                if (currentAbilityInUse is Impassable)
                 {
-                    currentAbilityInUse = catalogue
-                                          .GetComponent<AbilityCatalogue>()
-                                          .GetAbility(heldAbilities[i]);
+                    currentAffectedObject = player;
+                }
+                else
+                {
+                    currentAffectedObject = catalogue
+                                            .GetComponent<AbilityCatalogue>()
+                                            .GetAffectedObject(heldAbilities[currentSelectedAbility]);
+                }
 
-                    currentAbilityInUseIndex = i;
+                currentAbilityIcon = AbilityIcons[currentSelectedAbility].GetComponent<Image>();
 
-                    if (currentAbilityInUse is Impassable)
-                    {
-                        currentAffectedObject = player;
-                    }
-                    else
-                    {
-                        currentAffectedObject = catalogue
-                                                .GetComponent<AbilityCatalogue>()
-                                                .GetAffectedObject(heldAbilities[i]);
-                    }
+                abilityIsActive = true;
 
-                    currentAbilityIcon = AbilityIcons[i].GetComponent<Image>();
-
-                    abilityIsActive = true;
-
-                    if (currentAbilityInUse is TimeAbility)
-                    {
-                        timer = timeAbilityActiveTime; //Change this later, for some reason cannot access active time 
-                        currentAbilityInUse.Activate(currentAffectedObject);
-                        currentAbilityIcon.fillAmount = 1;
-                    }
-                    else
-                    {
-                        currentAbilityIcon.color = new Color32(0, 255, 0, 255);
-                    }
+                if (currentAbilityInUse is TimeAbility)
+                {
+                    timer = timeAbilityActiveTime; //Change this later, for some reason cannot access active time 
+                    currentAbilityInUse.Activate(currentAffectedObject);
+                    currentAbilityIcon.fillAmount = 1;
+                }
+                else
+                {
+                    currentAbilityIcon.color = new Color32(0, 255, 0, 255);
                 }
             }
         }
@@ -95,13 +105,39 @@ public class AbilityHolder : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetKeyDown(changeAbilitySlotKey))
+        {
+            AbilityBorders[currentSelectedAbility].GetComponent<SpriteRenderer>().sprite = ABILITYNOTSELECTED;
+            currentSelectedAbility = (currentSelectedAbility + 1) % heldAbilities.Length;
+            AbilityBorders[currentSelectedAbility].GetComponent<SpriteRenderer>().sprite = ABILITYSELECTED;
+            UpdateAbilityDescription();
+        }
+    }
+
+    private void UpdateAbilityDescription()
+    {
+        if (HasAbility(currentSelectedAbility))
+        {
+            InfoText.GetComponent<TextMeshProUGUI>().text = catalogue.GetComponent<AbilityCatalogue>().GetDescription(currentSelectedAbility);
+            InfoBox.SetActive(true);
+            InfoText.SetActive(true);
+        }
+        else
+        {
+            InfoBox.SetActive(false);
+            InfoText.SetActive(false);
+        }
+
+        
     }
 
     public void ResetAllAbilities()
     {
         DisableAbility();
         heldAbilities = new int[] { -1, -1, -1 };
-        UpdateUI();
+        UpdateAbilityUI();
+        UpdateAbilityDescription();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -176,10 +212,10 @@ public class AbilityHolder : MonoBehaviour
             ball.GetComponent<Ball>().isModifiedByPlayer2 = false;
         }
 
-        UpdateUI();
+        UpdateAbilityUI();
     }
 
-    public void UpdateUI()
+    public void UpdateAbilityUI()
     {
         for (int i = 0; i < AbilityIcons.Length; i++)
         {
@@ -194,21 +230,12 @@ public class AbilityHolder : MonoBehaviour
                                                                .GetIcon(heldAbilities[i]);
                 AbilityIcons[i].GetComponent<Image>().fillAmount = 1;
             }
-
         }
     }
 
     private bool HasAbility(int i)
     {
         return heldAbilities[i] != -1;
-    }
-
-    private void UpdateKeycodeUI()
-    {
-        for (int i = 0; i < KeycodeIcons.Length; i++)
-        {
-            KeycodeIcons[i].GetComponent<TextMeshProUGUI>().text = InputKeys[i].ToString();
-        }
     }
 
     public void GrantAbility(int ability)
@@ -218,10 +245,11 @@ public class AbilityHolder : MonoBehaviour
             if (!HasAbility(i))
             {
                 heldAbilities[i] = ability;
-                UpdateUI();
+                UpdateAbilityUI();
                 return;
             }
         }
+        UpdateAbilityDescription();
     }
 
 }
