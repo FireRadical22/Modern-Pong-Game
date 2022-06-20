@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     private int Player1Score;
     private int Player2Score;
 
+    
     public void Player1Scored() 
     {
         Player1Score++;
@@ -70,5 +72,17 @@ public class GameManager : MonoBehaviour
             Player2Paddle.GetComponent<Paddle>().Reset();
         }
     }
+
+    /*public void Winner()
+    {
+        Scene Winner = SceneManager.GetSceneByName("Game Over");
+        if (Player1Score == 11)
+        {
+            
+        } else if (Player2Score == 11)
+        {
+
+        }
+    }*/
     
 }

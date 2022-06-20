@@ -43,7 +43,7 @@ public class ItemBox : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
-       bool ballIsCollider = collider.gameObject.CompareTag("Ball") || collider.gameObject.CompareTag("Fake Ball");
+       bool ballIsCollider = collider.gameObject.CompareTag("Ball") || collider.gameObject.CompareTag("FakeBall");
 
         if (ballIsCollider)
         {

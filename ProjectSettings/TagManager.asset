@@ -7,7 +7,6 @@ TagManager:
   - Ball
   - CollisionWallTag
   - CurveBounce
-  - Fake  Ball
   - AbilityCatalogue
   layers:
   - Default
