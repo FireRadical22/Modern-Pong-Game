@@ -280,6 +280,8 @@ MonoBehaviour:
   Player2Goal: {fileID: 603056814}
   Player1Text: {fileID: 182295943}
   Player2Text: {fileID: 401676290}
+  GameOverScene:
+    m_Handle: 0
   isSingleplayer: 0
 --- !u!1 &182295943
 GameObject:

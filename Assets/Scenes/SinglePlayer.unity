@@ -395,6 +395,8 @@ MonoBehaviour:
   Player2Goal: {fileID: 603056814}
   Player1Text: {fileID: 652485404}
   Player2Text: {fileID: 1415197565}
+  GameOverScene:
+    m_Handle: 0
   isSingleplayer: 1
 --- !u!1 &79597475
 GameObject:
@@ -5707,8 +5709,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e30806a8611344fdaa93d36a4cfc6d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeAbilitySlotKey: 0
-  activateAbilityKey: 0
+  changeAbilitySlotKey: 113
+  activateAbilityKey: 101
   AbilityIcons:
   - {fileID: 168396692}
   - {fileID: 798833978}
@@ -5724,8 +5726,8 @@ MonoBehaviour:
   otherPlayer: {fileID: 1355129065}
   ball: {fileID: 379870171}
   timeAbilityActiveTime: 5
-  ABILITYSELECTED: {fileID: 0}
-  ABILITYNOTSELECTED: {fileID: 0}
+  ABILITYSELECTED: {fileID: 21300000, guid: 8315d1fcf4a5d03418075815fe42c4e4, type: 3}
+  ABILITYNOTSELECTED: {fileID: 21300000, guid: 4fb5301432c93ed42868b7796928c841, type: 3}
 --- !u!61 &1805348017
 BoxCollider2D:
   m_ObjectHideFlags: 0

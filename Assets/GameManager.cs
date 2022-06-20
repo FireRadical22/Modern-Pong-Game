@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public GameObject Player1Text;
     public GameObject Player2Text;
 
+    [Header("Game Over Scene")]
+    public Scene GameOverScene;
+
     public bool isSingleplayer;
     private int Player1Score;
     private int Player2Score;
@@ -30,32 +33,44 @@ public class GameManager : MonoBehaviour
     {
         Player1Score++;
         Player1Text.GetComponent<TextMeshProUGUI>().text = Player1Score.ToString();
-        Player1Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
-        if (isSingleplayer)
+        if (Player1Score == 1)
         {
-            Player2Paddle.GetComponent<AIAbilityHolder>().ResetAllAbilities();
-        } 
-        else 
+            Winner(1);
+        } else
         {
-            Player2Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
+            Player1Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
+            if (isSingleplayer)
+            {
+                Player2Paddle.GetComponent<AIAbilityHolder>().ResetAllAbilities();
+            }
+            else
+            {
+                Player2Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
+            }
+            ResetPosition();
         }
-        ResetPosition();
     }
 
     public void Player2Scored() 
     {
         Player2Score++;
         Player2Text.GetComponent<TextMeshProUGUI>().text = Player2Score.ToString();
-        Player1Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
-        if (isSingleplayer)
-        { 
-            Player2Paddle.GetComponent<AIAbilityHolder>().ResetAllAbilities();
-        } 
-        else 
+        if (Player2Score == 1)
         {
-            Player2Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
+            Winner(2);
+        } else
+        {
+            Player1Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
+            if (isSingleplayer)
+            {
+                Player2Paddle.GetComponent<AIAbilityHolder>().ResetAllAbilities();
+            }
+            else
+            {
+                Player2Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
+            }
+            ResetPosition();
         }
-        ResetPosition();
     }
 
     private void ResetPosition()
@@ -73,16 +88,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /*public void Winner()
+    private void Winner(int winner)
     {
-        Scene Winner = SceneManager.GetSceneByName("Game Over");
-        if (Player1Score == 11)
+        SceneManager.LoadScene("GameOver");
+        if (isSingleplayer)
         {
-            
-        } else if (Player2Score == 11)
+            if (winner == 1)
+            {
+                StateNameController.heading = "Victory!!!";
+                StateNameController.winner = "You Win!";
+            } else
+            {
+                StateNameController.heading = "Game Over";
+                StateNameController.winner = "You Lose...";
+            }
+        } else
         {
-
+            StateNameController.heading = "Victory!!!";
+            string result = "";
+            result = "Player " + winner.ToString() + " wins!";
+            StateNameController.winner = result;
         }
-    }*/
+        
+    }
     
 }

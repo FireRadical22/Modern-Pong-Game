@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameOverScene : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject Header;
+    public GameObject Result;
+
     void Start()
     {
-        
+        Header.GetComponent<TextMeshProUGUI>().text = StateNameController.heading;
+        Result.GetComponent<TextMeshProUGUI>().text = StateNameController.winner;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
