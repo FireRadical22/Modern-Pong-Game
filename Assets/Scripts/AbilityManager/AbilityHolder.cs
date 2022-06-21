@@ -13,7 +13,6 @@ public class AbilityHolder : MonoBehaviour
     public GameObject[] AbilityBorders;
     public GameObject controlsInfo;
     public GameObject InfoBox;
-    public GameObject InfoText;
 
     public GameObject catalogue;
 
@@ -42,6 +41,7 @@ public class AbilityHolder : MonoBehaviour
         UpdateAbilityUI();
         UpdateControlsInfo();
         currentSelectedAbility = 0;
+        InfoBox.SetActive(false);
     }
 
     private void UpdateControlsInfo()
@@ -119,17 +119,13 @@ public class AbilityHolder : MonoBehaviour
     {
         if (HasAbility(currentSelectedAbility))
         {
-            InfoText.GetComponent<TextMeshProUGUI>().text = catalogue.GetComponent<AbilityCatalogue>().GetDescription(currentSelectedAbility);
+            InfoBox.GetComponentInChildren<TextMeshProUGUI>().text = catalogue.GetComponent<AbilityCatalogue>().GetDescription(heldAbilities[currentSelectedAbility]);
             InfoBox.SetActive(true);
-            InfoText.SetActive(true);
         }
         else
         {
             InfoBox.SetActive(false);
-            InfoText.SetActive(false);
         }
-
-        
     }
 
     public void ResetAllAbilities()
@@ -246,7 +242,7 @@ public class AbilityHolder : MonoBehaviour
             {
                 heldAbilities[i] = ability;
                 UpdateAbilityUI();
-                return;
+                break;
             }
         }
         UpdateAbilityDescription();
