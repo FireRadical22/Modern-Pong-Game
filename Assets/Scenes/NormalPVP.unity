@@ -2185,11 +2185,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ef1442d15c96c1c4f8a88f1fdda6c0ce, type: 3}
   - {fileID: 21300000, guid: 3d2d764bf41c3f94eaa063765448783a, type: 3}
   abilityDescriptions:
-  - 'Impassable: Make paddle big'
-  - 'InvisBall: Make paddle invisible'
-  - 'CurveBall: ball bounce'
-  - 'MultiBall: Spawns fake balls'
-  - 'Slingshot: Make ball fast'
+  - Impassable
+  - InvisBall
+  - BounceBall
+  - MultiBall
+  - Slingshot
 --- !u!4 &577519348
 Transform:
   m_ObjectHideFlags: 0
@@ -4971,6 +4971,7 @@ MonoBehaviour:
   speed: 5
   rb: {fileID: 1355129066}
   startPosition: {x: 0, y: 0, z: 0}
+  ballSpeedMultiplier: 1.1
 --- !u!114 &1355129071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6031,6 +6032,7 @@ MonoBehaviour:
   speed: 5
   rb: {fileID: 1805348010}
   startPosition: {x: 0, y: 0, z: 0}
+  ballSpeedMultiplier: 1.1
 --- !u!114 &1805348015
 MonoBehaviour:
   m_ObjectHideFlags: 0

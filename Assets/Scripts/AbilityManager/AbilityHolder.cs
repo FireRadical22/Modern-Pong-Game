@@ -209,6 +209,7 @@ public class AbilityHolder : MonoBehaviour
         }
 
         UpdateAbilityUI();
+        UpdateAbilityDescription();
     }
 
     public void UpdateAbilityUI()

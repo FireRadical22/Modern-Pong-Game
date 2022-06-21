@@ -8,6 +8,9 @@ public class Paddle : MonoBehaviour
     public float speed;
     public Rigidbody2D rb;
     public Vector3 startPosition;
+    public float ballSpeedMultiplier;
+
+    private GameObject ball;
 
     private float movement;
 
@@ -28,6 +31,7 @@ public class Paddle : MonoBehaviour
     public void Start() 
     {
         startPosition = transform.position;
+        ball = GameObject.FindGameObjectWithTag("Ball");
     }
 
     public void Reset() 
@@ -43,6 +47,9 @@ public class Paddle : MonoBehaviour
         if (isCollisionWithBall)
         {
             collision.GetComponent<Ball>().lastHitByPlayer1 = isPlayer1;
+
+            Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(rb.velocity.x * ballSpeedMultiplier, rb.velocity.y * ballSpeedMultiplier);
         }
 
     }
