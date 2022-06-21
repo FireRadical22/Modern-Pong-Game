@@ -17,9 +17,10 @@ public class ItemBox : MonoBehaviour
 
     public void Start()
     {
+        SetItemBoxActiveState(false);
+        timer = cooldown;
         RandomisePosition();
         numberOfAbilities = catalogue.GetComponent<AbilityCatalogue>().catalogue.Count;
-        itemBoxIsActive = true;
     }
 
     public void Update()
