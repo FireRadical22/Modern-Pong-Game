@@ -12,6 +12,8 @@ User Stories:
 
 Game Ideation:
 
+We decided to build upon the original Pong Game by implementing an ability system where users can activate abilities in order to improve their chance at scoring against their opponents. Additionally, we would like to give users the option to either play against their friend on the same screen or pit their skills against bots of different difficulties. 
+
 GameField Design
 
 We have decided to follow the original Pong's theme (Black and White) while setting the standard paddle and ball design to be that of the original Pong Game, keeping the game simple for users.
