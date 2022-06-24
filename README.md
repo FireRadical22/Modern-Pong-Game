@@ -2,39 +2,46 @@
 
 Achievement Level: Gemini
 
-Project Scope: A Modified version of Pong, where players have the ability to acquire skills from skill boxes and use them to aid in scoring against their opponents
+Project Scope: A Modified version of Pong, where players have the ability to acquire skills from item boxes and use them to aid in scoring against their opponents
 
 Problem Motivation:
-While attending an online programming course, the game Pong was introduced to us under the course’s Game track. The game was used as an example to teach us the basics of programming a game. Then, an idea came: Pong is a very simple game yet it does not bring the same level of excitement as today’s due to its simplicity. 
+While attending an online programming course, the game Pong was introduced to us under the course’s Game track. The game was used as an example to teach us the basics of programming a game. We thought of modernising Pong, bringing in more complexity to the game and making it more enjoyable to play compared to the original Pong Game
 
-Proposed core features:
-1. Skills 
+User Stories:
 
-   Players can acquire skills by directing the ball towards skill boxes that randomly generate within the game board. Each player can only hold up to 3 skills in their    inventory at any given time. Upon scoring, any skill that was already in use will be removed from the respective player's inventory. The skills players can use are    as follows:
 
-    1.1 InvisiBall:
-    Upon colliding with the user's paddle, the ball will turn invisible. The skill is deactivated when the ball hits the opponent's paddle or the user scores a goal.
+Game Ideation:
 
-    1.2 BounceBall:
-    Upon colliding with the user's paddle, the ball will bounce. The skill is deactivated when the ball hits the opponent's paddle or the user scores a goal.
-    
-    1.3 Slingshot:
-    On activating, the ball will move faster for a short period of time. 
-    
-    1.4 Impassable:
-    On activating, the paddle will become longer for a short period of time.
-    
-    1.5 Multi-Ball:
-    Upon colliding with the user's paddle, the ball will summon 3 ball clones, camoflauging itself among the clones. The real ball will have a lighter shade compared       to the clones. The clones will not collide with the paddle and pass through it instead. The skill is deactivated when the real ball hits the opponent's paddle or       the user scores a goal.
+GameField Design
+
+We have decided to follow the original Pong's theme (Black and White) while setting the standard paddle and ball design to be that of the original Pong Game, keeping the game simple for users.
+
+Management of Skills
+
+We generated a catalogue of all abilities in the game in an AbilityCatalogue so as to refer to whenever the player is granted a skill upon the ball's interaction with the item box
+
+Deployment of Skills
+
+Each player is given an AbilityHolder to activate any skills there are granted by the item box. The AbilityHolder can only hold 3 skills at any given time so that players do not have too many skills in their hand to use during the game.
+
  
-2. Player vs Player/Bot
+ Player vs Player/Bot
 
     2.1 Player vs Player: (PvP)
     Players can play against each other on the same screen.(Couch Multiplayer) Each player uses a seperate set of keys to manoveurve the paddles and activate their         skills on a keyboard. The victor is determined by the first player to score 11 goals.
 
     2.2 Player vs AI: (PvA)
     Players can fight against bots of 3 different difficulties: Easy, Medium, Hard. Players can only fight the bot at the next difficulty if they have defeated the bot     at the current difficulty.
-
+    
+    2.2.1 Easy Mode
+    In this mode, the bot will track and follow the ball's y-coordinates only when the ball is moving away from the bot and activates its skill whenever there is a skill present in its inventory.
+    
+    2.2.2 Medium Mode
+    In this mode, the bot will track and follow the ball's y-coordinates all the time as well but however, will activate it's skills periodically if present. Additionally, the bot will be slightly smarter than easy mode bot in its use of TimeAbility skills.
+    
+    2.2.3 Hard Mode
+    In this mode, the bot will now predict the movement of the ball and activates it's skills and varying intervals now. Additionally, the bot will be slightly smarter than medium bot in its use of all the skills.
+    
 3. Animations, trials and skins
 
    Players can enjoy different goal animations, ball trails, paddle and ball skins to use while playing against other Players/bots.
@@ -64,7 +71,7 @@ Implementation:
        - Use delegate to determine which skill's Activate function to call upon pressing key. (if a skill is found in the player's inventory, mapped to the key pressed)
        - Each delegate is mapped to a key, resulting in a total 6 delegates mapped to 6 keys.
       
-      Skill Box:
+      Item Box:
       
        - Create a randomiser that generates a random enum value that corresponds to a skill. The skill's Activate function is then fed to an available Delegate (if any)
    
@@ -77,3 +84,9 @@ Implementation:
      - Create an Audio Manager for gameplay musics (to be played in order)
      - Add in more goal animations and ball trails using particle system and trail renderer respectively
      - Create new paddle and ball skins using GIMP/Microsoft Paint 3D
+
+
+Tech Stack:
+
+   1. Unity Game Engine
+       The main game engine used for the implementation of the game. The engine can also allow generate builds that are downloadable by people to play the game
