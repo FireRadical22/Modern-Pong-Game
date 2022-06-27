@@ -7,7 +7,7 @@ public class Pause : MonoBehaviour
     public static bool GameIsPaused = false;
 
     public GameObject PauseMenuUI;
-    //public GameObject GameField;
+    public GameObject GameField;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -26,6 +26,7 @@ public class Pause : MonoBehaviour
     {
         //GameField.SetActive(true);
         PauseMenuUI.SetActive(false);
+        GameField.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -34,6 +35,7 @@ public class Pause : MonoBehaviour
     {
         //GameField.SetActive(false);
         PauseMenuUI.SetActive(true);
+        GameField.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
