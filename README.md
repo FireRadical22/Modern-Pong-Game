@@ -9,8 +9,7 @@ While attending an online programming course, the game Pong was introduced to us
 
 User Stories:
 
-
-Game Ideation:
+## Game Ideation:
 
 We decided to build upon the original Pong Game by implementing an ability system where users can activate abilities in order to improve their chance at scoring against their opponents. Additionally, we would like to give users the option to either play against their friend on the same screen or pit their skills against bots of different difficulties. 
 
@@ -48,7 +47,7 @@ Each player is given an AbilityHolder to activate any skills there are granted b
 
    Players can enjoy different goal animations, ball trails, paddle and ball skins to use while playing against other Players/bots.
 
-Implementation: 
+## Implementation: 
 
    Gameplay:
       
@@ -92,3 +91,38 @@ Tech Stack:
 
    1. Unity Game Engine
        The main game engine used for the implementation of the game. The engine can also allow generate builds that are downloadable by people to play the game
+       
+       
+## Software Engineering and Design:
+   1. Ability Structure
+
+     - All abilities inherit from the Ability abstract superclass
+     - Due to difference in behaviour of different abilities, we further divided them into two abstract base classes: Collision-based abilities and Time-based abilities
+     - Collision-based abilities are activated on user’s next collision with ball, and deactivated on collision with opponent's paddle
+     - Time-based abilities are activated immediately and lasts for a set duration
+     - Separating these two types of abilities allows us to easily implement different behaviour for different abilities
+
+
+![Ability Structure](https://user-images.githubusercontent.com/97655028/175889607-17fd2b71-653d-4805-87c6-5f0f5a231d5c.png)
+
+
+   2. Ability Handling
+
+     - All abilities inherit from the Ability abstract superclass
+     - Each player is assigned an AbilityHolder, which handles all user interaction with abilities
+     - When user hovers over a slot with an usable ability and activates it, AbilityHolder checks if it’s Collision-based or Time-based and handles activation or deactivation accordingly
+     - When ball collides with the item box, player who last collided with ball is assigned a random ability and it’s reference index is stored inside AbilityHolder
+     
+ 
+   3. Data Handling
+
+     - We store all abilities, it’s affected object, and icons inside an AbilityCatalogue which can be retrieved using a reference index assigned to each ability (Try use a hashtable in future when it gets more complicated?)
+     - AbilityHolder gets the actual ability asset from AbilityCatalogue when it wants to activate an ability with the stored index
+     - We are guaranteed O(1) access time for all abilities no matter how many more we add into the game at a later date
+
+
+
+       
+       
+       
+       
