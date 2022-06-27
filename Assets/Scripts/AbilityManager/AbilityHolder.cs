@@ -111,11 +111,11 @@ public class AbilityHolder : MonoBehaviour
             AbilityBorders[currentSelectedAbility].GetComponent<SpriteRenderer>().sprite = ABILITYNOTSELECTED;
             currentSelectedAbility = (currentSelectedAbility + 1) % heldAbilities.Length;
             AbilityBorders[currentSelectedAbility].GetComponent<SpriteRenderer>().sprite = ABILITYSELECTED;
-            UpdateAbilityDescription();
+            //UpdateAbilityDescription();
         }
     }
 
-    private void UpdateAbilityDescription()
+    /*private void UpdateAbilityDescription()
     {
         if (HasAbility(currentSelectedAbility))
         {
@@ -126,14 +126,14 @@ public class AbilityHolder : MonoBehaviour
         {
             InfoBox.SetActive(false);
         }
-    }
+    }*/
 
     public void ResetAllAbilities()
     {
         DisableAbility();
         heldAbilities = new int[] { -1, -1, -1 };
         UpdateAbilityUI();
-        UpdateAbilityDescription();
+        //UpdateAbilityDescription();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -209,7 +209,7 @@ public class AbilityHolder : MonoBehaviour
         }
 
         UpdateAbilityUI();
-        UpdateAbilityDescription();
+        //UpdateAbilityDescription();
     }
 
     public void UpdateAbilityUI()
@@ -246,7 +246,7 @@ public class AbilityHolder : MonoBehaviour
                 break;
             }
         }
-        UpdateAbilityDescription();
+        //UpdateAbilityDescription();
     }
 
 }

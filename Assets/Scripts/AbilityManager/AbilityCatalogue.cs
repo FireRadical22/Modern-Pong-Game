@@ -32,9 +32,9 @@ public class AbilityCatalogue : MonoBehaviour
         return catalogue[i];
     }
 
-    public string GetDescription(int i)
-    {
-        return abilityDescriptions[i];
-    }
+    //public string GetDescription(int i)
+    //{
+    //    return abilityDescriptions[i];
+    //}
 
 }
