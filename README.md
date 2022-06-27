@@ -119,7 +119,7 @@ Tech Stack:
      - AbilityHolder gets the actual ability asset from AbilityCatalogue when it wants to activate an ability with the stored index
      - We are guaranteed O(1) access time for all abilities no matter how many more we add into the game at a later date
 
-![Ability Management](https://user-images.githubusercontent.com/97655028/175901263-491dafc6-9295-4086-bc9e-7e85bcdf33a2.png)
+![Capture](https://user-images.githubusercontent.com/97655028/175962463-33ed3bd2-1388-4a85-99df-de6150817b9f.png)
 
 ## Software Engineering Principles:
 
