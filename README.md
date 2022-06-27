@@ -108,7 +108,6 @@ Tech Stack:
 
    2. Ability Handling
 
-     - All abilities inherit from the Ability abstract superclass
      - Each player is assigned an AbilityHolder, which handles all user interaction with abilities
      - When user hovers over a slot with an usable ability and activates it, AbilityHolder checks if it’s Collision-based or Time-based and handles activation or deactivation accordingly
      - When ball collides with the item box, player who last collided with ball is assigned a random ability and it’s reference index is stored inside AbilityHolder
