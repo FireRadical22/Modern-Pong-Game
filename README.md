@@ -1,10 +1,10 @@
 # Modern-Pong-Game
 
-Achievement Level: Gemini
+## Achievement Level: Gemini
 
-Project Scope: A Modified version of Pong, where players have the ability to acquire skills from item boxes and use them to aid in scoring against their opponents
+## Project Scope: A Modified version of Pong, where players have the ability to acquire skills from item boxes and use them to aid in scoring against their opponents
 
-Problem Motivation:
+## Problem Motivation:
 While attending an online programming course, the game Pong was introduced to us under the course’s Game track. The game was used as an example to teach us the basics of programming a game. We thought of modernising Pong, bringing in more complexity to the game and making it more enjoyable to play compared to the original Pong Game
 
 User Stories:
@@ -91,6 +91,15 @@ Tech Stack:
 
    1. Unity Game Engine
        The main game engine used for the implementation of the game. The engine can also allow generate builds that are downloadable by people to play the game
+   
+   2. C# Programming
+       The language used to run the game implemented
+   
+   3. GitHub
+       Tool for collaboration 
+       
+   4. SoundTrap
+       For Creating Sound Effects
        
        
 ## Software Design:
