@@ -93,7 +93,7 @@ Tech Stack:
        The main game engine used for the implementation of the game. The engine can also allow generate builds that are downloadable by people to play the game
        
        
-## Software Engineering and Design:
+## Software Design:
    1. Ability Structure
 
      - All abilities inherit from the Ability abstract superclass
@@ -121,7 +121,15 @@ Tech Stack:
 
 
 
-       
-       
+## Software Engineering Principles:
+
+| Principle  | Implementation Details |
+| ------------- | ------------- |
+| Liskov Substitution Principle  | All abilities extend from the Ability superclass  |
+| Singleton Principle  | There are certain Game Objects that require only one instance for interaction between other Game Objects. <ul><li> AbilityCatalogue: We need only one place to store all information related to abilities</li><li>ItemBox: We can reuse the same item box by making it active or inactive</li><li>GameManager: We need only one manager to keep track of scores and if a player has won</li></ul>|
+| Abstraction  | We abstract away implementation details of abilities since the user only needs to activate or deactivate abilities. This allows us to easily add or modify abilities without changing anything else. |
+| Separation of concerns  | We make sure each script does only what it is supposed to be concerned with. |
+| Law of Demeter  | Only scripts related to ability management can communicate with each other: AbilityHolder, ItemBox and AbilityCatalogue  |
+
        
        
