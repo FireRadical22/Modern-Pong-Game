@@ -21,6 +21,7 @@ public class Ball : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         transform.position = startPosition;
+        gameObject.GetComponent<TrailRenderer>().Clear();
         Launch();
     }
 
