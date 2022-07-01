@@ -46,10 +46,15 @@ public class Paddle : MonoBehaviour
 
         if (isCollisionWithBall)
         {
-            collision.GetComponent<Ball>().lastHitByPlayer1 = isPlayer1;
-
+            Ball ballScript = collision.GetComponent<Ball>();
             Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
-            rb.velocity = new Vector2(rb.velocity.x * ballSpeedMultiplier, rb.velocity.y * ballSpeedMultiplier);
+
+            ballScript.lastHitByPlayer1 = isPlayer1;
+
+            if (ballScript.IsBelowSpeedLimit())
+            {
+                rb.velocity = new Vector2(rb.velocity.x * ballSpeedMultiplier, rb.velocity.y * ballSpeedMultiplier);
+            }
         }
 
     }
