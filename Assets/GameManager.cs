@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         Player1Paddle.GetComponent<Paddle>().Reset();
         if (isSingleplayer)
         {
-            Player2Paddle.GetComponent<EasyAIPaddle>().Reset();
+            Player2Paddle.GetComponent<AIPaddle>().Reset();
         } 
         else 
         {

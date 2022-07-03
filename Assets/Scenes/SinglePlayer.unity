@@ -4554,8 +4554,8 @@ GameObject:
   - component: {fileID: 1355129076}
   - component: {fileID: 1355129066}
   - component: {fileID: 1355129071}
-  - component: {fileID: 1355129075}
   - component: {fileID: 1355129077}
+  - component: {fileID: 1355129078}
   m_Layer: 8
   m_Name: Player2
   m_TagString: Player
@@ -4690,22 +4690,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
---- !u!114 &1355129075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355129065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9448079f82009234c8d5b51597aac585, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  rb: {fileID: 1355129066}
-  startPosition: {x: 9, y: 0, z: 0}
-  ObjectTracking: {fileID: 379870171}
 --- !u!61 &1355129076
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4763,6 +4747,23 @@ MonoBehaviour:
   timeAbilityActiveTime: 5
   ABILITYSELECTED: {fileID: 21300000, guid: 8315d1fcf4a5d03418075815fe42c4e4, type: 3}
   ABILITYNOTSELECTED: {fileID: 21300000, guid: 4fb5301432c93ed42868b7796928c841, type: 3}
+--- !u!114 &1355129078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355129065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2725d95ae6c0cc343ac3602782ffb276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  rb: {fileID: 1355129066}
+  startPosition: {x: 0, y: 0, z: 0}
+  ballSpeedMultiplier: 1.1
+  ObjectTracking: {fileID: 379870171}
 --- !u!1 &1415197565
 GameObject:
   m_ObjectHideFlags: 0

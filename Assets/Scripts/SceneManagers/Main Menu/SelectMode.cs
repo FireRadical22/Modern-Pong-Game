@@ -10,8 +10,9 @@ public class SelectMode : MonoBehaviour
         SceneManager.LoadScene("NormalPVP");
     }
 
-    public void PlaySingle()
+    public void PlaySingle(int difficulty)
     {
+        AIPaddle.difficulty = difficulty;
         SceneManager.LoadScene("SinglePlayer");
     }
 
