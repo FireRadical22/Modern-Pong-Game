@@ -32,4 +32,10 @@ public class Ball : MonoBehaviour
         rb.velocity = new Vector2(speed * x, speed * y);
     }
 
+    public bool IsBelowSpeedLimit()
+    {
+        return (rb.velocity.x < 7) && (rb.velocity.y < 7);  
+    }
+
+
 }
