@@ -11,6 +11,8 @@ public class Ball : MonoBehaviour
     public bool isModifiedByPlayer2;
     public bool lastHitByPlayer1;
 
+    public bool speedLimitReached;
+
     public void Start()
     {
         startPosition = transform.position;
@@ -34,7 +36,7 @@ public class Ball : MonoBehaviour
 
     public bool IsBelowSpeedLimit()
     {
-        return (rb.velocity.x < 7) && (rb.velocity.y < 7);  
+        return (Mathf.Abs(rb.velocity.x) < 10) && (Mathf.Abs(rb.velocity.y) < 10);  
     }
 
 

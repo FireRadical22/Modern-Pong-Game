@@ -52,8 +52,19 @@ public class AIPaddle : MonoBehaviour
         if (isCollisionWithBall)
         {
             collision.GetComponent<Ball>().lastHitByPlayer1 = false;
+            Ball ballScript = collision.GetComponent<Ball>();
             Rigidbody2D rb = ObjectTracking.GetComponent<Rigidbody2D>();
-            rb.velocity = new Vector2(rb.velocity.x * ballSpeedMultiplier, rb.velocity.y * ballSpeedMultiplier);
+            if (ballScript.IsBelowSpeedLimit())
+            {
+                rb.velocity = new Vector2(rb.velocity.x * ballSpeedMultiplier, rb.velocity.y * ballSpeedMultiplier);
+            }
+            else
+            {
+                float XSpeedLimit = rb.velocity.x < 0 ? -10.0f : 10.0f;
+                float YSpeedLimit = rb.velocity.y < 0 ? -10.0f : 10.0f;
+                rb.velocity = new Vector2(XSpeedLimit, YSpeedLimit);
+                ballScript.speedLimitReached = true;
+            }
         }
 
     }

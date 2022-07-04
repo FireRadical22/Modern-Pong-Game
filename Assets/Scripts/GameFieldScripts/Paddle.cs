@@ -54,7 +54,13 @@ public class Paddle : MonoBehaviour
             if (ballScript.IsBelowSpeedLimit())
             {
                 rb.velocity = new Vector2(rb.velocity.x * ballSpeedMultiplier, rb.velocity.y * ballSpeedMultiplier);
-            }
+            } else
+            {
+                float XSpeedLimit = rb.velocity.x < 0 ? -10.0f : 10.0f;
+                float YSpeedLimit = rb.velocity.y < 0 ? -10.0f : 10.0f;
+                rb.velocity = new Vector2(XSpeedLimit, YSpeedLimit);
+                ballScript.speedLimitReached = true;
+            } 
         }
 
     }

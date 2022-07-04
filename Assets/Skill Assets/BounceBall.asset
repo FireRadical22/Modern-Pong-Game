@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BounceBall
   m_EditorClassIdentifier: 
   name: 
-  gravity: 10
+  gravity: 5
