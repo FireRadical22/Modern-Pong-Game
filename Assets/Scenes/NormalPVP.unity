@@ -1230,6 +1230,7 @@ MonoBehaviour:
   isModifiedByPlayer1: 0
   isModifiedByPlayer2: 0
   lastHitByPlayer1: 0
+  speedLimitReached: 0
 --- !u!96 &379870177
 TrailRenderer:
   serializedVersion: 2
@@ -5800,7 +5801,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1374163371}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 773153102}
+        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
+        m_MethodName: ResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1684529535
 GameObject:
   m_ObjectHideFlags: 0
