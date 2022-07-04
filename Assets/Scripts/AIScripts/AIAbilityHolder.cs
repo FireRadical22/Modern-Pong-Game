@@ -33,6 +33,12 @@ public class AIAbilityHolder : MonoBehaviour
     private GameObject currentAffectedObject;
     private float timer;
 
+    delegate void Activate(GameObject affectedObject);
+    Activate activate;
+
+    delegate void Deactivate(GameObject affectedObject);
+    Deactivate deactivate;
+
     public void Start()
     {
         heldAbilities = new int[] { -1, -1, -1 };
@@ -47,9 +53,13 @@ public class AIAbilityHolder : MonoBehaviour
 
             if (HasAbility(currentSelectedAbility)) 
             {
+               
                 currentAbilityInUse = catalogue
-                                        .GetComponent<AbilityCatalogue>()
-                                        .GetAbility(heldAbilities[currentSelectedAbility]);
+                                       .GetComponent<AbilityCatalogue>()
+                                       .GetAbility(heldAbilities[currentSelectedAbility]);
+
+                activate = currentAbilityInUse.Activate;
+                deactivate = currentAbilityInUse.Deactivate;
 
                 if (currentAbilityInUse is Impassable)
                 {
@@ -69,7 +79,7 @@ public class AIAbilityHolder : MonoBehaviour
                 if (currentAbilityInUse is TimeAbility)
                 {
                     timer = timeAbilityActiveTime; //Change this later, for some reason cannot access active time 
-                    currentAbilityInUse.Activate(currentAffectedObject);
+                    activate(currentAffectedObject);
                     currentAbilityIcon.fillAmount = 1;
                 }
                 else
@@ -130,7 +140,7 @@ public class AIAbilityHolder : MonoBehaviour
 
         if (abilityIsActive && currentAbilityInUse is CollisionAbility)
         {
-            currentAbilityInUse.Activate(currentAffectedObject);
+            activate(currentAffectedObject);
 
             if (isPlayer1)
             {
@@ -147,7 +157,7 @@ public class AIAbilityHolder : MonoBehaviour
     {
         if (currentAbilityInUse != null)
         {
-            currentAbilityInUse.Deactivate(currentAffectedObject);
+            deactivate(currentAffectedObject);
         }
 
         if (currentAbilityInUse is CollisionAbility)
