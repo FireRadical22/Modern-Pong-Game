@@ -14,6 +14,8 @@ public class AIPaddle : MonoBehaviour
     protected Vector2 ballPos;
     protected static float lowerBound = -3.5f;
     protected static float upperBound = 3.5f;
+    private static float reactiontime = 0.3f;
+    private float time;
 
     delegate void Move();
     Move move;
@@ -22,13 +24,17 @@ public class AIPaddle : MonoBehaviour
 
     void Start()
     {
+        time = 0.0f;
         startPosition = transform.position;
         switch(difficulty)
         {
             case 0:
-                move = MediumMove;
+                move = EasyMove;
                 break;
             case 1:
+                move = MediumMove;
+                break;
+            case 2:
                 move = HardMove;
                 break;
         }
@@ -69,6 +75,36 @@ public class AIPaddle : MonoBehaviour
 
     }
 
+    void EasyMove()
+    {
+        ballPos = ObjectTracking.transform.localPosition;
+        if (ObjectTracking.GetComponent<Ball>().lastHitByPlayer1)
+        {
+            if (time <= reactiontime)
+            {
+                transform.localPosition += Vector3.zero;
+                time += Time.deltaTime;
+            }
+            else
+            {
+                if (transform.localPosition.y > ballPos.y && transform.localPosition.y > lowerBound)
+                {
+                    transform.localPosition += new Vector3(0, -speed * Time.deltaTime, 0);
+                }
+                else if (transform.localPosition.y < ballPos.y && transform.localPosition.y < upperBound)
+                {
+                    transform.localPosition += new Vector3(0, speed * Time.deltaTime, 0);
+                }
+                else
+                {
+                    transform.localPosition += Vector3.zero;
+                }
+            }
+        } else
+        {
+            time = 0.0f;
+        }
+    }
     void MediumMove()
     {
         ballPos = ObjectTracking.transform.localPosition;
