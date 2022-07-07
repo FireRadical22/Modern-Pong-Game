@@ -37,7 +37,7 @@ public class AbilityHolder : MonoBehaviour
 
     public void Start()
     {
-        heldAbilities = new int[] { -1, -1, -1 };
+        heldAbilities = new int[] { 5, -1, -1 };
         UpdateAbilityUI();
         UpdateControlsInfo();
         currentSelectedAbility = 0;
@@ -65,15 +65,20 @@ public class AbilityHolder : MonoBehaviour
 
                 currentAbilityInUseIndex = currentSelectedAbility;
 
-                if (currentAbilityInUse is Impassable)
+                switch (currentAbilityInUse)
                 {
-                    currentAffectedObject = player;
-                }
-                else
-                {
-                    currentAffectedObject = catalogue
-                                            .GetComponent<AbilityCatalogue>()
-                                            .GetAffectedObject(heldAbilities[currentSelectedAbility]);
+                    case Impassable:
+                        currentAffectedObject = player;
+                        break;
+
+                    case TimeStop:
+                        currentAffectedObject = gameObject;
+                        break;
+
+                    default:
+                        currentAffectedObject = catalogue.GetComponent<AbilityCatalogue>()
+                                                         .GetAffectedObject(heldAbilities[currentSelectedAbility]);
+                        break;
                 }
 
                 currentAbilityIcon = AbilityIcons[currentSelectedAbility].GetComponent<Image>();

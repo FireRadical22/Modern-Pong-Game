@@ -2209,8 +2209,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7787e012ae3eb034b99a160f363c37ca, type: 2}
   - {fileID: 11400000, guid: c79d22691ac530f4eae72d53d403ab76, type: 2}
   - {fileID: 11400000, guid: a41ea25c742e5412a80eb7c3be0a0f5d, type: 2}
+  - {fileID: 11400000, guid: 2239774ae55ba634db88c510d12b328f, type: 2}
   affectedObjects:
   - {fileID: 1950647711}
+  - {fileID: 379870171}
   - {fileID: 379870171}
   - {fileID: 379870171}
   - {fileID: 379870171}
@@ -2220,6 +2222,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ff9fb16372dcc5d4dba8a763354ed3a4, type: 3}
   - {fileID: 21300000, guid: 3cfcd324142a9d84286476777a196a53, type: 3}
   - {fileID: 21300000, guid: ef1442d15c96c1c4f8a88f1fdda6c0ce, type: 3}
+  - {fileID: 21300000, guid: 3d2d764bf41c3f94eaa063765448783a, type: 3}
   - {fileID: 21300000, guid: 3d2d764bf41c3f94eaa063765448783a, type: 3}
   abilityDescriptions:
   - 

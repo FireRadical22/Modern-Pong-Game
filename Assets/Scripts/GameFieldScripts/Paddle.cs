@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
+    public static bool isTimeStopped = false;
+    public bool canMoveDuringTimeStop = false;
+
     public bool isPlayer1;
     public float speed;
     public Rigidbody2D rb;
@@ -12,20 +15,46 @@ public class Paddle : MonoBehaviour
 
     private GameObject ball;
 
-    private float movement;
+    private float movementX;
+    private float movementY;
 
     public void Update()
     {
-        if (isPlayer1) 
+        if (isTimeStopped)
         {
-            movement = Input.GetAxisRaw("Vertical");
-        } 
-        else 
-        {
-            movement = Input.GetAxisRaw("Vertical2");
+            if (isPlayer1)
+            {
+                if (canMoveDuringTimeStop)
+                {
+                    movementY = Input.GetAxisRaw("Vertical");
+                    movementX = Input.GetAxisRaw("Horizontal");
+                    rb.velocity = new Vector2(movementX * speed, movementY * speed);
+                }
+            }
+            else
+            {
+                if (canMoveDuringTimeStop)
+                {
+                    movementY = Input.GetAxisRaw("Vertical2");
+                    movementX = Input.GetAxisRaw("Horizontal2");
+                    rb.velocity = new Vector2(movementX * speed, movementY * speed);
+                }
+            }
         }
-        
-        rb.velocity = new Vector2(rb.velocity.x, movement * speed);
+        else
+        {
+            if (isPlayer1)
+            {
+                movementY = Input.GetAxisRaw("Vertical");
+                rb.velocity = new Vector2(rb.velocity.x, movementY * speed);
+            }
+            else
+            {
+                movementY = Input.GetAxisRaw("Vertical2");
+                rb.velocity = new Vector2(rb.velocity.x, movementY * speed);
+            }
+        }
+
     }
 
     public void Start() 

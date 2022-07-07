@@ -9,11 +9,13 @@ public class ItemBox : MonoBehaviour
     public GameObject catalogue;
     public GameObject itemBox;
     public float cooldown;
+    public float despawnTime;
     public bool isSingleplayer;
 
     private int numberOfAbilities;
     private float timer;
     private bool itemBoxIsActive;
+    private float uptime;
 
     public void Start()
     {
@@ -32,8 +34,20 @@ public class ItemBox : MonoBehaviour
             if (timer <= 0)
             {
                 SetItemBoxActiveState(true);
+                uptime = despawnTime;
                 RandomisePosition();
             }
+        }
+        else
+        {
+            uptime -= Time.deltaTime;
+
+            if (uptime <= 0)
+            {
+                SetItemBoxActiveState(false);
+                RandomisePosition();
+            }
+
         }
     }
 
