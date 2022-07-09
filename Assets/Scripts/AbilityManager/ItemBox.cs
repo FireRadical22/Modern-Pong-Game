@@ -27,27 +27,30 @@ public class ItemBox : MonoBehaviour
 
     public void Update()
     {
-        if (!itemBoxIsActive)
+        if (!Paddle.isTimeStopped)
         {
-            timer -= Time.deltaTime;
-
-            if (timer <= 0)
+            if (!itemBoxIsActive)
             {
-                SetItemBoxActiveState(true);
-                uptime = despawnTime;
-                RandomisePosition();
-            }
-        }
-        else
-        {
-            uptime -= Time.deltaTime;
+                timer -= Time.deltaTime;
 
-            if (uptime <= 0)
+                if (timer <= 0)
+                {
+                    SetItemBoxActiveState(true);
+                    uptime = despawnTime;
+                    RandomisePosition();
+                }
+            }
+            else
             {
-                SetItemBoxActiveState(false);
-                RandomisePosition();
-            }
+                uptime -= Time.deltaTime;
 
+                if (uptime <= 0)
+                {
+                    SetItemBoxActiveState(false);
+                    RandomisePosition();
+                }
+
+            }
         }
     }
 
