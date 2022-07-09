@@ -16,6 +16,7 @@ public class AIPaddle : MonoBehaviour
     protected static float upperBound = 3.5f;
     private static float reactiontime = 0.3f;
     private float time;
+    private AIAbilityHolder holder;
 
     delegate void Move();
     Move move;
@@ -24,24 +25,57 @@ public class AIPaddle : MonoBehaviour
 
     void Start()
     {
+        
+        holder = gameObject.GetComponent<AIAbilityHolder>();
         time = 0.0f;
         startPosition = transform.position;
-        switch(difficulty)
+   
+        switch (difficulty)
         {
             case 0:
-                move = EasyMove;
-                break;
+               move = EasyMove;
+               break;
             case 1:
-                move = MediumMove;
-                break;
+               move = MediumMove;
+               break;
             case 2:
-                move = HardMove;
-                break;
+               move = HardMove;
+               break;
         }
     }
 
     void Update()
     {
+        if (holder.isActivated() && holder.currentAbilityInUse is InvisBall)
+        {
+            switch (difficulty)
+            {
+                case 0:
+                    move = EasyMoveOnActivate;
+                    break;
+                case 1:
+                    move = MediumMoveOnActivate;
+                    break;
+                case 2:
+                    move = HardMoveOnActivate;
+                    break;
+            }
+        }
+        else
+        {
+            switch (difficulty)
+            {
+                case 0:
+                    move = EasyMove;
+                    break;
+                case 1:
+                    move = MediumMove;
+                    break;
+                case 2:
+                    move = HardMove;
+                    break;
+            }
+        }
         move();
     }
 
@@ -77,7 +111,6 @@ public class AIPaddle : MonoBehaviour
 
     void EasyMove()
     {
-        ballPos = ObjectTracking.transform.localPosition;
         if (ObjectTracking.GetComponent<Ball>().lastHitByPlayer1)
         {
             if (time <= reactiontime)
@@ -87,49 +120,59 @@ public class AIPaddle : MonoBehaviour
             }
             else
             {
-                if (transform.localPosition.y > ballPos.y && transform.localPosition.y > lowerBound)
-                {
-                    transform.localPosition += new Vector3(0, -speed * Time.deltaTime, 0);
-                }
-                else if (transform.localPosition.y < ballPos.y && transform.localPosition.y < upperBound)
-                {
-                    transform.localPosition += new Vector3(0, speed * Time.deltaTime, 0);
-                }
-                else
-                {
-                    transform.localPosition += Vector3.zero;
-                }
+                Track();
             }
         } else
         {
             time = 0.0f;
+            Track();
         }
     }
     void MediumMove()
     {
-        ballPos = ObjectTracking.transform.localPosition;
-        if (ObjectTracking.GetComponent<Ball>().lastHitByPlayer1)
-        {
-            if (transform.localPosition.y > ballPos.y && transform.localPosition.y > lowerBound)
-            {
-                transform.localPosition += new Vector3(0, -speed * Time.deltaTime, 0);
-            }
-            else if (transform.localPosition.y < ballPos.y && transform.localPosition.y < upperBound)
-            {
-                transform.localPosition += new Vector3(0, speed * Time.deltaTime, 0);
-            }
-            else
-            {
-                transform.localPosition += Vector3.zero;
-            }
-        }
-        else
-        {
-            transform.localPosition += Vector3.zero;
-        }
+        //if (ObjectTracking.GetComponent<Ball>().lastHitByPlayer1)
+        //{
+        Track();
+        //}
+        //else
+        //{
+        //    transform.localPosition += Vector3.zero;
+        //}
     }
 
     void HardMove()
+    {
+        Track();
+    }
+
+    void EasyMoveOnActivate()
+    {
+        if (ObjectTracking.GetComponent<Ball>().lastHitByPlayer1)
+        {
+            transform.localPosition += Vector3.zero;
+        } else
+        {
+            Track();
+        }
+    }
+
+    void MediumMoveOnActivate()
+    {
+        transform.localPosition += Vector3.zero;
+    }
+
+    void HardMoveOnActivate()
+    {
+        if (!(ObjectTracking.GetComponent<Ball>().lastHitByPlayer1))
+        {
+            transform.localPosition += Vector3.zero;
+        } else
+        {
+            Track();
+        }
+    }
+
+    private void Track()
     {
         ballPos = ObjectTracking.transform.localPosition;
         if (transform.localPosition.y > ballPos.y && transform.localPosition.y > lowerBound)

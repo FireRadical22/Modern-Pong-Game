@@ -53,7 +53,7 @@ public class ItemBox : MonoBehaviour
 
     public int RandomAbility()
     {
-        return Random.Range(0, numberOfAbilities);
+        return Random.Range(0, numberOfAbilities - 1);
     }
 
     public void OnTriggerEnter2D(Collider2D collider)

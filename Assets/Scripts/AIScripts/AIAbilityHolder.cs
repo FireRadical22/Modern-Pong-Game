@@ -27,7 +27,7 @@ public class AIAbilityHolder : MonoBehaviour
     private int[] heldAbilities;
     private int currentSelectedAbility;
     private int currentAbilityInUseIndex;
-    private Ability currentAbilityInUse;
+    public Ability currentAbilityInUse;
     private Image currentAbilityIcon;
     private bool abilityIsActive;
     private GameObject currentAffectedObject;
@@ -48,7 +48,7 @@ public class AIAbilityHolder : MonoBehaviour
 
     public void Update()
     {
-        if (!abilityIsActive)
+        if (!isActivated())
         {
 
             if (HasAbility(currentSelectedAbility)) 
@@ -126,7 +126,7 @@ public class AIAbilityHolder : MonoBehaviour
             isPlayer1 ? ballComponent.isModifiedByPlayer2
                       : ballComponent.isModifiedByPlayer1;
 
-        if (ballIsModifiedByOtherPlayer)
+         if (ballIsModifiedByOtherPlayer)
         {
             if (isBot)
             {
@@ -138,7 +138,7 @@ public class AIAbilityHolder : MonoBehaviour
             }
         }
 
-        if (abilityIsActive && currentAbilityInUse is CollisionAbility)
+        if (isActivated() && currentAbilityInUse is CollisionAbility)
         {
             if (AIPaddle.difficulty == 0 && currentAbilityInUse is InvisBall && ball.GetComponent<Ball>().lastHitByPlayer1)
             {
@@ -267,6 +267,11 @@ public class AIAbilityHolder : MonoBehaviour
         }
 
         return -1;
+    }
+
+    public bool isActivated()
+    {
+        return abilityIsActive;
     }
 
     
