@@ -9,11 +9,12 @@ TagManager:
   - CurveBounce
   - AbilityCatalogue
   - FakeBall
+  - BallAI
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - AIPaddle
   - Water
   - UI
   - Ball Clones
@@ -21,8 +22,8 @@ TagManager:
   - Paddle
   - Ability Icon
   - Ability Background
-  - 
-  - 
+  - BallDetector
+  - InvisbleBallAI
   - 
   - 
   - 

@@ -10,7 +10,9 @@ public class AIPaddle : MonoBehaviour
     public float ballSpeedMultiplier;
 
     public GameObject ObjectTracking;
-    public static int difficulty;
+    public GameObject ObjectTrackingPrefab;
+    public GameObject Detector;
+    public static int difficulty = 2;
     protected Vector2 ballPos;
     protected static float lowerBound = -3.5f;
     protected static float upperBound = 3.5f;
@@ -46,6 +48,7 @@ public class AIPaddle : MonoBehaviour
 
     void Update()
     {
+        ballPos = ObjectTracking.transform.position;
         if (holder.isActivated() && holder.currentAbilityInUse is InvisBall)
         {
             switch (difficulty)
@@ -77,6 +80,7 @@ public class AIPaddle : MonoBehaviour
             }
         }
         move();
+        
     }
 
     public void Reset()
@@ -88,12 +92,23 @@ public class AIPaddle : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         bool isCollisionWithBall = collision.gameObject.CompareTag("Ball");
-
+        
         if (isCollisionWithBall)
         {
+            if (difficulty == 2)
+            {
+                ObjectTrackingPrefab.GetComponent<InvisibleBallAI>().ActivatePreFab(ObjectTracking);
+            }
+
+            if (Detector.GetComponent<BallAIDetector>().HasReached())
+            {
+                Detector.GetComponent<BallAIDetector>().Reset();
+            }
+
             collision.GetComponent<Ball>().lastHitByPlayer1 = false;
             Ball ballScript = collision.GetComponent<Ball>();
             Rigidbody2D rb = ObjectTracking.GetComponent<Rigidbody2D>();
+            
             if (ballScript.IsBelowSpeedLimit())
             {
                 rb.velocity = new Vector2(rb.velocity.x * ballSpeedMultiplier, rb.velocity.y * ballSpeedMultiplier);
@@ -105,12 +120,13 @@ public class AIPaddle : MonoBehaviour
                 rb.velocity = new Vector2(XSpeedLimit, YSpeedLimit);
                 ballScript.speedLimitReached = true;
             }
-        }
+        } 
 
     }
 
     void EasyMove()
     {
+        ballPos = ObjectTracking.transform.position;
         if (ObjectTracking.GetComponent<Ball>().lastHitByPlayer1)
         {
             if (time <= reactiontime)
@@ -130,6 +146,7 @@ public class AIPaddle : MonoBehaviour
     }
     void MediumMove()
     {
+        ballPos = ObjectTracking.transform.position;
         //if (ObjectTracking.GetComponent<Ball>().lastHitByPlayer1)
         //{
         Track();
@@ -142,11 +159,20 @@ public class AIPaddle : MonoBehaviour
 
     void HardMove()
     {
+        BallAIDetector detector = Detector.GetComponent<BallAIDetector>();
+        if (detector.HasReached())
+        {
+            ballPos = detector.GetFinalDest();
+        } else
+        {
+            ballPos = ObjectTracking.transform.position;
+        }
         Track();
     }
 
     void EasyMoveOnActivate()
     {
+        ballPos = ObjectTracking.transform.position;
         if (ObjectTracking.GetComponent<Ball>().lastHitByPlayer1)
         {
             transform.localPosition += Vector3.zero;
@@ -158,6 +184,7 @@ public class AIPaddle : MonoBehaviour
 
     void MediumMoveOnActivate()
     {
+
         transform.localPosition += Vector3.zero;
     }
 
@@ -168,13 +195,12 @@ public class AIPaddle : MonoBehaviour
             transform.localPosition += Vector3.zero;
         } else
         {
-            Track();
+            HardMove();
         }
     }
 
     private void Track()
     {
-        ballPos = ObjectTracking.transform.localPosition;
         if (transform.localPosition.y > ballPos.y && transform.localPosition.y > lowerBound)
         {
             transform.localPosition += new Vector3(0, -speed * Time.deltaTime, 0);
@@ -188,4 +214,6 @@ public class AIPaddle : MonoBehaviour
             transform.localPosition += Vector3.zero;
         }
     }
+
+    
 }

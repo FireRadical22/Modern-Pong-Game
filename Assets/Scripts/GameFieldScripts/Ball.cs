@@ -12,11 +12,23 @@ public class Ball : MonoBehaviour
     public bool lastHitByPlayer1;
 
     public bool speedLimitReached;
+    private Vector3 finalPosition;
 
     public void Start()
     {
         startPosition = transform.position;
         Launch();
+    }
+
+    public void Update()
+    {
+        if (!IsBelowSpeedLimit())
+        {
+            float XSpeedLimit = rb.velocity.x < 0 ? -10.0f : 10.0f;
+            float YSpeedLimit = rb.velocity.y < 0 ? -10.0f : 10.0f;
+            rb.velocity = new Vector2(XSpeedLimit, YSpeedLimit);
+            speedLimitReached = true;
+        }
     }
 
     public void Reset() 
@@ -39,5 +51,18 @@ public class Ball : MonoBehaviour
         return (Mathf.Abs(rb.velocity.x) < 10) && (Mathf.Abs(rb.velocity.y) < 10);  
     }
 
+    public Vector3 GetFinalPosition()
+    {
+        if (transform.localPosition.x == 18.0f && gameObject.CompareTag("BallAI"))
+        {
+            finalPosition = transform.localPosition;
+            Destroy(gameObject);
+        }
+        else
+        {
+            finalPosition = Vector3.zero;
+        }
 
+        return finalPosition;
+    }
 }

@@ -12,7 +12,7 @@ public class SelectMode : MonoBehaviour
 
     public void PlaySingle(int difficulty)
     {
-        AIPaddle.difficulty = difficulty;
+        //AIPaddle.difficulty = difficulty;
         SceneManager.LoadScene("SinglePlayer");
     }
 
