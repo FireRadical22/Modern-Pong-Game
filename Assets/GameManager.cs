@@ -8,10 +8,12 @@ public class GameManager : MonoBehaviour
 {
     [Header("Ball")]
     public GameObject Ball;
+    public GameObject BallPrefab;
 
     [Header("Player 1")]
     public GameObject Player1Paddle;
     public GameObject Player1Goal;
+    public GameObject Player1ballDetector;
 
     [Header("Player 2")]
     public GameObject Player2Paddle;
@@ -80,7 +82,9 @@ public class GameManager : MonoBehaviour
         Player1Paddle.GetComponent<Paddle>().Reset();
         if (isSingleplayer)
         {
+            Player1ballDetector.GetComponent<Player1BallDetector>().Reset();
             Player2Paddle.GetComponent<AIPaddle>().Reset();
+            BallPrefab.GetComponent<InvisibleBallAI>().DeactivatePreFab();
         } 
         else 
         {

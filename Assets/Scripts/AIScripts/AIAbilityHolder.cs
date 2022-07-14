@@ -140,10 +140,6 @@ public class AIAbilityHolder : MonoBehaviour
 
         if (isActivated() && currentAbilityInUse is CollisionAbility)
         {
-            if (AIPaddle.difficulty == 0 && currentAbilityInUse is InvisBall && ball.GetComponent<Ball>().lastHitByPlayer1)
-            {
-                player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            }
             activate(currentAffectedObject);
 
             if (isPlayer1)
@@ -166,10 +162,6 @@ public class AIAbilityHolder : MonoBehaviour
 
         if (currentAbilityInUse is CollisionAbility)
         {
-        //    if (currentAbilityInUse is InvisBall && AIPaddle.difficulty == 0)
-        //   {
-        //        player.GetComponent<Rigidbody2D>().velocity = 
-        //    }
             currentAbilityIcon.color = new Color32(255, 255, 255, 255);
         }
 

@@ -389,8 +389,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ball: {fileID: 379870171}
+  BallPrefab: {fileID: 391528107}
   Player1Paddle: {fileID: 1805348009}
   Player1Goal: {fileID: 1581551319}
+  Player1ballDetector: {fileID: 475858168}
   Player2Paddle: {fileID: 1355129065}
   Player2Goal: {fileID: 603056814}
   Player1Text: {fileID: 652485404}
@@ -1955,6 +1957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 475858171}
   - component: {fileID: 475858170}
+  - component: {fileID: 475858172}
   m_Layer: 11
   m_Name: BallAIDetector 2
   m_TagString: Untagged
@@ -1996,13 +1999,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475858168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.82, y: 0.12, z: 0.25}
+  m_LocalPosition: {x: -9, y: -0.21, z: 0.25}
   m_LocalScale: {x: 0.5, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &475858172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475858168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9e2a9bdf4cb7f4394bd733e23dd335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1: {fileID: 1805348009}
+  abilitytodetect: {fileID: 11400000, guid: 7787e012ae3eb034b99a160f363c37ca, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,7 +2168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 532188301}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.42, y: -0.04, z: 0.25}
+  m_LocalPosition: {x: 8.85, y: 0.03, z: 0.25}
   m_LocalScale: {x: 0.3, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5764,6 +5781,7 @@ MonoBehaviour:
   timeAbilityActiveTime: 5
   ABILITYSELECTED: {fileID: 21300000, guid: 8315d1fcf4a5d03418075815fe42c4e4, type: 3}
   ABILITYNOTSELECTED: {fileID: 21300000, guid: 4fb5301432c93ed42868b7796928c841, type: 3}
+  currentAbilityInUse: {fileID: 0}
 --- !u!61 &1805348017
 BoxCollider2D:
   m_ObjectHideFlags: 0

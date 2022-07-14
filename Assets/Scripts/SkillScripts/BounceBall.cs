@@ -13,7 +13,7 @@ public class BounceBall : CollisionAbility
         Vector2 v = ball.velocity;
         int negateY = v.y > 0 ? 1: -1;
         Launch(ball);
-        ball.gravityScale = gravity * negateY;
+        ball.gravityScale = v.y > 0 ? gravity : -gravity;
     } 
 
     public override void Deactivate(GameObject parent){

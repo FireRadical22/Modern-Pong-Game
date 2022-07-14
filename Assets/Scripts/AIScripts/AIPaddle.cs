@@ -87,6 +87,8 @@ public class AIPaddle : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         transform.position = startPosition;
+        ballPos = ObjectTracking.transform.position;
+        ObjectTrackingPrefab.GetComponent<InvisibleBallAI>().DeactivatePreFab();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -98,6 +100,10 @@ public class AIPaddle : MonoBehaviour
             if (difficulty == 2)
             {
                 ObjectTrackingPrefab.GetComponent<InvisibleBallAI>().ActivatePreFab(ObjectTracking);
+                if (holder.currentAbilityInUse is BounceBall)
+                {
+                    ObjectTrackingPrefab.GetComponent<Rigidbody2D>().gravityScale = ObjectTracking.GetComponent<Rigidbody2D>().gravityScale;
+                }
             }
 
             if (Detector.GetComponent<BallAIDetector>().HasReached())

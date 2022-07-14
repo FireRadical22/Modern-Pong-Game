@@ -21,7 +21,7 @@ public class InvisibleBallAI : MonoBehaviour
     public void ActivatePreFab(GameObject affectedObject)
     {
         transform.localPosition = affectedObject.transform.localPosition;
-        //gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
         Vector2 rbvelocity = affectedObject.GetComponent<Rigidbody2D>().velocity;
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-rbvelocity.x * SpeedMultiplier, rbvelocity.y * SpeedMultiplier);
     }

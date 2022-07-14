@@ -81,20 +81,11 @@ public class Paddle : MonoBehaviour
 
             ballScript.lastHitByPlayer1 = isPlayer1;
 
-            /*if (isSinglePlayer && AIPaddle.difficulty == 2)
-            {
-                GameObject clone = Object.Instantiate(ball);
-                //clone.GetComponent<SpriteRenderer>().enabled = true;
-                clone.GetComponent<TrailRenderer>().enabled = false;
-                Rigidbody2D cloneRB = clone.GetComponent<Rigidbody2D>();
-                cloneRB.velocity = new Vector2(rb.velocity.x * 2.0f, rb.velocity.y * 2.0f);
-                clone.tag = "BallAI";
-                clone.layer = 6;
-            }*/
-
             if (ballScript.IsBelowSpeedLimit())
             {
+                //Debug.Log(rb.velocity.y);
                 rb.velocity = new Vector2(rb.velocity.x * ballSpeedMultiplier, rb.velocity.y * ballSpeedMultiplier);
+                //Debug.Log(rb.velocity.y);
             } else
             {
                 float XSpeedLimit = rb.velocity.x < 0 ? -10.0f : 10.0f;

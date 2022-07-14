@@ -29,7 +29,7 @@ public class AbilityHolder : MonoBehaviour
     private int[] heldAbilities;
     private int currentSelectedAbility;
     private int currentAbilityInUseIndex;
-    private Ability currentAbilityInUse;
+    public Ability currentAbilityInUse;
     private Image currentAbilityIcon;
     private bool abilityIsActive;
     private GameObject currentAffectedObject;

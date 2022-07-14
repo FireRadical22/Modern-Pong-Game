@@ -22,7 +22,7 @@ public class Ball : MonoBehaviour
 
     public void Update()
     {
-        if (!IsBelowSpeedLimit())
+        if (!IsBelowSpeedLimit() && rb.gravityScale == 0)
         {
             float XSpeedLimit = rb.velocity.x < 0 ? -10.0f : 10.0f;
             float YSpeedLimit = rb.velocity.y < 0 ? -10.0f : 10.0f;
