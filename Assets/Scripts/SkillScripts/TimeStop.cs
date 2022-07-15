@@ -6,7 +6,7 @@ using UnityEngine;
 public class TimeStop : TimeAbility
 {
 
-    Vector2 ballVelocity;
+    public static Vector2 resultantVelocity;
     float playerXPosition;
 
     private GameObject ball;
@@ -14,11 +14,10 @@ public class TimeStop : TimeAbility
     // Ability User is passed in as affectedObject
     public override void Activate(GameObject affectedObject)
     {
-
         ball = affectedObject.GetComponent<AbilityHolder>().ball;
 
         // Save velocity before stopping time
-        ballVelocity = ball.GetComponent<Rigidbody2D>().velocity;
+        resultantVelocity = ball.GetComponent<Rigidbody2D>().velocity;
         ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
         playerXPosition = affectedObject.GetComponent<Transform>().position.x;
@@ -29,13 +28,12 @@ public class TimeStop : TimeAbility
     public override void Deactivate(GameObject affectedObject)
     {
         // Set ball velocity back
-        ball.GetComponent<Rigidbody2D>().velocity = ballVelocity;
+        ball.GetComponent<Rigidbody2D>().velocity = resultantVelocity;
         Paddle.isTimeStopped = false;
         affectedObject.GetComponent<Paddle>().canMoveDuringTimeStop = false;
 
         Vector3 pos = affectedObject.GetComponent<Transform>().position;
 
-        //affectedObject.GetComponent<Transform>().position.Set(playerXPosition, pos.y, pos.z);
         affectedObject.transform.position = new Vector3(playerXPosition, affectedObject.transform.position.y, 0);
         affectedObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }

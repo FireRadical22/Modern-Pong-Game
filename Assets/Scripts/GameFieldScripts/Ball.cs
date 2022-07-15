@@ -29,6 +29,13 @@ public class Ball : MonoBehaviour
             rb.velocity = new Vector2(XSpeedLimit, YSpeedLimit);
             speedLimitReached = true;
         }
+
+        if (Paddle.isTimeStopped)
+        {
+            float newX = rb.velocity.x / 1.003f; // decay factor
+            float newY = rb.velocity.y / 1.003f;
+            rb.velocity = new Vector2(newX, newY);
+        }
     }
 
     public void Reset() 
@@ -65,4 +72,17 @@ public class Ball : MonoBehaviour
 
         return finalPosition;
     }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (Paddle.isTimeStopped)
+        {
+            if (collision.gameObject.tag.Equals("Player"))
+            {
+                TimeStop.resultantVelocity += rb.velocity;
+            }
+        }
+
+    }
+
 }
