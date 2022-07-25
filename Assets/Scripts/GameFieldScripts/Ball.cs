@@ -10,14 +10,22 @@ public class Ball : MonoBehaviour
     public bool isModifiedByPlayer1;
     public bool isModifiedByPlayer2;
     public bool lastHitByPlayer1;
+    public bool isRecalling;
+
+    public LinkedList<Vector2> list;
+    public LinkedList<Vector2> velocityList;
 
     public bool speedLimitReached;
     private Vector3 finalPosition;
+
+
 
     public void Start()
     {
         startPosition = transform.position;
         Launch();
+        list = new LinkedList<Vector2>();
+        velocityList = new LinkedList<Vector2>();
     }
 
     public void Update()
@@ -35,6 +43,35 @@ public class Ball : MonoBehaviour
             float newX = rb.velocity.x / 1.003f; // decay factor
             float newY = rb.velocity.y / 1.003f;
             rb.velocity = new Vector2(newX, newY);
+        }
+    }
+
+    public void FixedUpdate()
+    {
+        if (isRecalling)
+        {
+            if (list.First != null)
+            {
+                rb.MovePosition(list.First.Value);
+                list.RemoveFirst();
+            }
+            else
+            {
+                rb.velocity = velocityList.Last.Value;
+                velocityList = new LinkedList<Vector2>();
+                isRecalling = false;
+            }
+        }
+        else
+        {
+            list.AddLast(rb.position);
+            velocityList.AddLast(rb.velocity);
+
+            if (list.Count > 300)
+            {
+                list.RemoveFirst();
+                velocityList.RemoveFirst();
+            }
         }
     }
 

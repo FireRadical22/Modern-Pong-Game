@@ -10,6 +10,8 @@ public class MultiBall : CollisionAbility
 
     public override void Activate(GameObject PreFab)
     {
+        SoundManager.PlayMultiBallSound();
+
         clones = new GameObject[CloneCount];
         int i = 0;
         

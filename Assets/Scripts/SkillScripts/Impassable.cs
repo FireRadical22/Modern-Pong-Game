@@ -9,6 +9,7 @@ public class Impassable : TimeAbility
     
     public override void Activate(GameObject player) 
     {
+        SoundManager.PlayImpassableSound();
         player.transform.localScale += new Vector3(0f, scaleFactor, 0f);
     }
 

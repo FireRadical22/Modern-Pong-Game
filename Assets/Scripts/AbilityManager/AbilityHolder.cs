@@ -39,7 +39,7 @@ public class AbilityHolder : MonoBehaviour
 
     public void Start()
     {
-        heldAbilities = new int[] { 5, -1, -1 };
+        heldAbilities = new int[] { 3, 4, 5 };
         UpdateAbilityUI();
         UpdateControlsInfo();
         currentSelectedAbility = 0;

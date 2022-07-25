@@ -10,6 +10,7 @@ public class Slingshot : TimeAbility
 
     public override void Activate(GameObject ball)
     {
+        SoundManager.PlaySlingshotSound();
         Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
         if(ball.GetComponent<Ball>().speedLimitReached)
         {

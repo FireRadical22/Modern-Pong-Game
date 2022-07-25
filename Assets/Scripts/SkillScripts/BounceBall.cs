@@ -9,6 +9,7 @@ public class BounceBall : CollisionAbility
     public float gravity;
 
     public override void Activate(GameObject parent){
+        SoundManager.PlayBounceBallSound();
         Rigidbody2D ball = parent.GetComponent<Rigidbody2D>();
         Vector2 v = ball.velocity;
         int negateY = v.y > 0 ? 1: -1;
