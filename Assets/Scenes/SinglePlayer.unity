@@ -395,10 +395,9 @@ MonoBehaviour:
   Player1ballDetector: {fileID: 475858168}
   Player2Paddle: {fileID: 1355129065}
   Player2Goal: {fileID: 603056814}
+  BallAIDetector: {fileID: 532188301}
   Player1Text: {fileID: 652485404}
   Player2Text: {fileID: 1415197565}
-  GameOverScene:
-    m_Handle: 0
   isSingleplayer: 1
 --- !u!1 &79597475
 GameObject:
@@ -2019,7 +2018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1: {fileID: 1805348009}
-  abilitytodetect: {fileID: 11400000, guid: 7787e012ae3eb034b99a160f363c37ca, type: 2}
+  BallAI: {fileID: 391528107}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4912,6 +4911,7 @@ MonoBehaviour:
   player: {fileID: 1355129065}
   otherPlayer: {fileID: 1805348009}
   ball: {fileID: 379870171}
+  ballPreFab: {fileID: 391528107}
   timeAbilityActiveTime: 5
   ABILITYSELECTED: {fileID: 21300000, guid: 8315d1fcf4a5d03418075815fe42c4e4, type: 3}
   ABILITYNOTSELECTED: {fileID: 21300000, guid: 4fb5301432c93ed42868b7796928c841, type: 3}
@@ -4935,6 +4935,38 @@ MonoBehaviour:
   ObjectTracking: {fileID: 379870171}
   ObjectTrackingPrefab: {fileID: 391528107}
   Detector: {fileID: 532188301}
+--- !u!1 &1359791584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1359791585}
+  m_Layer: 0
+  m_Name: Player1GoalAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1359791585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359791584}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -11.04, y: 4.98, z: -1.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1473018691}
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1415197565
 GameObject:
   m_ObjectHideFlags: 0
@@ -5070,6 +5102,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415197565}
   m_CullTransparentMesh: 1
+--- !u!1 &1473018690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1473018691}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1473018691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473018690}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1359791585}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1557528791
 GameObject:
   m_ObjectHideFlags: 0
@@ -5500,6 +5563,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702012482}
   m_CullTransparentMesh: 1
+--- !u!1 &1704711368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1704711369}
+  m_Layer: 0
+  m_Name: Player2GoalAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1704711369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704711368}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.2, y: 4.9, z: -2.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1714700383
 GameObject:
   m_ObjectHideFlags: 0
@@ -5775,6 +5869,7 @@ MonoBehaviour:
   catalogue: {fileID: 577519346}
   isBot: 1
   isPlayer1: 1
+  isSinglePlayer: 0
   player: {fileID: 1805348009}
   otherPlayer: {fileID: 1355129065}
   ball: {fileID: 379870171}

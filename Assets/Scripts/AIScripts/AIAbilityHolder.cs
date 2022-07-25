@@ -19,6 +19,7 @@ public class AIAbilityHolder : MonoBehaviour
     public GameObject player;
     public GameObject otherPlayer;
     public GameObject ball;
+    public GameObject ballPreFab;
     public float timeAbilityActiveTime;
 
     public Sprite ABILITYSELECTED;
@@ -41,7 +42,7 @@ public class AIAbilityHolder : MonoBehaviour
 
     public void Start()
     {
-        heldAbilities = new int[] { -1, -1, -1 };
+        heldAbilities = new int[] { 2, -1, -1 };
         UpdateAbilityUI();
         currentSelectedAbility = 1;
     }
@@ -141,6 +142,10 @@ public class AIAbilityHolder : MonoBehaviour
         if (isActivated() && currentAbilityInUse is CollisionAbility)
         {
             activate(currentAffectedObject);
+            if (currentAbilityInUse is BounceBall && AIPaddle.difficulty == 2)
+            {
+                ballPreFab.GetComponent<InvisibleBallAI>().DeactivatePreFab();
+            }
 
             if (isPlayer1)
             {

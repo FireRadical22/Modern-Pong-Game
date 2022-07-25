@@ -18,9 +18,11 @@ public class AbilityHolder : MonoBehaviour
 
     public bool isBot;
     public bool isPlayer1;
+    public bool isSinglePlayer;
     public GameObject player;
     public GameObject otherPlayer;
     public GameObject ball;
+    //public GameObject ballPreFab;
     public float timeAbilityActiveTime;
 
     public Sprite ABILITYSELECTED;
@@ -169,6 +171,10 @@ public class AbilityHolder : MonoBehaviour
         if (abilityIsActive && currentAbilityInUse is CollisionAbility)
         {
             currentAbilityInUse.Activate(currentAffectedObject);
+            //if (isSinglePlayer && AIPaddle.difficulty == 2 && currentAbilityInUse is BounceBall)
+            //{
+            //    currentAbilityInUse.Activate(ballPreFab);
+            //}
 
             if (isPlayer1)
             {

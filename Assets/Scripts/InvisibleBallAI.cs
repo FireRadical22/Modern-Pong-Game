@@ -20,6 +20,7 @@ public class InvisibleBallAI : MonoBehaviour
 
     public void ActivatePreFab(GameObject affectedObject)
     {
+        //launches tracking ball at linear velocity
         transform.localPosition = affectedObject.transform.localPosition;
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         Vector2 rbvelocity = affectedObject.GetComponent<Rigidbody2D>().velocity;
@@ -29,6 +30,7 @@ public class InvisibleBallAI : MonoBehaviour
     public void DeactivatePreFab()
     {
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         transform.position = startPos;
     }

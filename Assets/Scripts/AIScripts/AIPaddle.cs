@@ -16,7 +16,7 @@ public class AIPaddle : MonoBehaviour
     protected Vector2 ballPos;
     protected static float lowerBound = -3.5f;
     protected static float upperBound = 3.5f;
-    private static float reactiontime = 0.3f;
+    private readonly float reactiontime = 0.3f;
     private float time;
     private AIAbilityHolder holder;
 
@@ -102,13 +102,12 @@ public class AIPaddle : MonoBehaviour
                 ObjectTrackingPrefab.GetComponent<InvisibleBallAI>().ActivatePreFab(ObjectTracking);
                 if (holder.currentAbilityInUse is BounceBall)
                 {
-                    ObjectTrackingPrefab.GetComponent<Rigidbody2D>().gravityScale = ObjectTracking.GetComponent<Rigidbody2D>().gravityScale;
+                    ObjectTrackingPrefab.GetComponent<Rigidbody2D>().velocity = ObjectTracking.GetComponent<Rigidbody2D>().velocity;
                 }
-            }
-
-            if (Detector.GetComponent<BallAIDetector>().HasReached())
-            {
-                Detector.GetComponent<BallAIDetector>().Reset();
+                if (Detector.GetComponent<BallAIDetector>().HasReached())
+                {
+                    Detector.GetComponent<BallAIDetector>().Reset();
+                }
             }
 
             collision.GetComponent<Ball>().lastHitByPlayer1 = false;
@@ -215,7 +214,12 @@ public class AIPaddle : MonoBehaviour
         {
             transform.localPosition += new Vector3(0, speed * Time.deltaTime, 0);
         }
-        else
+        else if (Detector.GetComponent<BallAIDetector>().HasReached() && transform.localPosition.y == ballPos.y)
+        {
+            transform.localPosition += Vector3.zero;
+            Detector.GetComponent<BallAIDetector>().Reset();
+            ballPos = ObjectTracking.transform.position;
+        } else
         {
             transform.localPosition += Vector3.zero;
         }

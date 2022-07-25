@@ -5,16 +5,26 @@ using UnityEngine;
 public class Player1BallDetector : MonoBehaviour
 {
     public GameObject player1;
-    public BounceBall abilitytodetect;
+    //public BounceBall abilitytodetect;
 
-    private GameObject BallAI;
+    public GameObject BallAI;
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (player1.GetComponent<AbilityHolder>().currentAbilityInUse is BounceBall && collision.gameObject.CompareTag("BallAI"))
+        if (collision.gameObject.CompareTag("BallAI"))
         {
-            BallAI = collision.gameObject;
-            BallAI.GetComponent<Rigidbody2D>().gravityScale = abilitytodetect.gravity;
+            Reset();
+            if (player1.GetComponent<AbilityHolder>().currentAbilityInUse is BounceBall)
+            {
+                BallAI.GetComponent<InvisibleBallAI>().DeactivatePreFab();
+            }
+            //BallAI = collision.gameObject;
+            //Reset();
+            //if (player1.GetComponent<AbilityHolder>().currentAbilityInUse is BounceBall)
+            //{
+            //    BallAI.GetComponent<InvisibleBallAI>().DeactivatePreFab();
+            //    //player1.GetComponent<AbilityHolder>().currentAbilityInUse.Activate(BallAI);
+            //}
         }
     }
 
