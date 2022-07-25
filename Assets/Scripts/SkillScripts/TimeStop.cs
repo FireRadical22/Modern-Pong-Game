@@ -14,6 +14,7 @@ public class TimeStop : TimeAbility
     // Ability User is passed in as affectedObject
     public override void Activate(GameObject affectedObject)
     {
+        SoundManager.PlayTimeStopSound();
         ball = affectedObject.GetComponent<AbilityHolder>().ball;
 
         // Save velocity before stopping time

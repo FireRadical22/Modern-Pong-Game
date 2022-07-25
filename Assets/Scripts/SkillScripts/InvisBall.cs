@@ -6,6 +6,7 @@ using UnityEngine;
 public class InvisBall : CollisionAbility
 {
     public override void Activate(GameObject parent){
+        SoundManager.PlayInvisBallSound();
         SpriteRenderer sprite = parent.GetComponent<SpriteRenderer>();
         sprite.enabled = false;
         parent.GetComponent<TrailRenderer>().enabled = false;
