@@ -10,6 +10,11 @@ public class StartMenu : MonoBehaviour
         SceneManager.LoadScene("SelectMode");
     }
 
+    public void Secret()
+    {
+        SceneManager.LoadScene("Secret");
+    }
+
     public void QuitGame()
     {
         Application.Quit();
