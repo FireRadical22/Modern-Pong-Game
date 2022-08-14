@@ -12,12 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOver.unity
     guid: 76950a4f9f7a02b4286888a6989be657
   - enabled: 1
-    path: Assets/Scenes/Secret.unity
+    path: Assets/Scenes/NormalPVP.unity
     guid: 67d9194c4e93a704e9e36cf0585472a9
   - enabled: 1
     path: Assets/Scenes/SinglePlayer.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/NormalPVP.unity
-    guid: fe02ff45aa52ed24fa3f107aba40ee87
   m_configObjects: {}
