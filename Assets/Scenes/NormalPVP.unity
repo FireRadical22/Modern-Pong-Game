@@ -7763,7 +7763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer1Goal: 0
   manager: {fileID: 63163997}
-  GoalAnimation: {fileID: 0}
+  GoalAnimation: {fileID: 1792677741}
 --- !u!61 &603056819
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25720,7 +25720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer1Goal: 1
   manager: {fileID: 63163997}
-  GoalAnimation: {fileID: 0}
+  GoalAnimation: {fileID: 1760373472}
 --- !u!61 &1581551324
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26185,7 +26185,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805348009}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.17030239, y: 0.03244592, z: 0.0013417485}
+  m_LocalPosition: {x: -0.18, y: 0.03244592, z: 0.0013417485}
   m_LocalScale: {x: 1, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
