@@ -3208,8 +3208,8 @@ MonoBehaviour:
   player2: {fileID: 1355129065}
   catalogue: {fileID: 577519346}
   itemBox: {fileID: 704034331}
-  cooldown: 2
-  despawnTime: 0
+  cooldown: 1.5
+  despawnTime: 5
   isSingleplayer: 1
 --- !u!61 &704034335
 BoxCollider2D:
