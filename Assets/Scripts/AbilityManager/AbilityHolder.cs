@@ -171,10 +171,6 @@ public class AbilityHolder : MonoBehaviour
         if (abilityIsActive && currentAbilityInUse is CollisionAbility)
         {
             currentAbilityInUse.Activate(currentAffectedObject);
-            //if (isSinglePlayer && AIPaddle.difficulty == 2 && currentAbilityInUse is BounceBall)
-            //{
-            //    currentAbilityInUse.Activate(ballPreFab);
-            //}
 
             if (isPlayer1)
             {

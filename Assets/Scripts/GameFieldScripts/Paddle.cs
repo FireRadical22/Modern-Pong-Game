@@ -77,6 +77,7 @@ public class Paddle : MonoBehaviour
         if (isCollisionWithBall)
         {
             Ball ballScript = collision.GetComponent<Ball>();
+            Debug.Log(ballScript.rb.velocity.x);
             Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
 
             ballScript.lastHitByPlayer1 = isPlayer1;
@@ -88,8 +89,8 @@ public class Paddle : MonoBehaviour
                 //Debug.Log(rb.velocity.y);
             } else
             {
-                float XSpeedLimit = rb.velocity.x < 0 ? -10.0f : 10.0f;
-                float YSpeedLimit = rb.velocity.y < 0 ? -10.0f : 10.0f;
+                float XSpeedLimit = rb.velocity.x < 0 ? -15.0f : 15.0f;
+                float YSpeedLimit = rb.velocity.y < 0 ? -15.0f : 15.0f;
                 rb.velocity = new Vector2(XSpeedLimit, YSpeedLimit);
                 ballScript.speedLimitReached = true;
             }

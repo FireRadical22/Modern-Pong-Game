@@ -32,8 +32,8 @@ public class Ball : MonoBehaviour
     {
         if (!IsBelowSpeedLimit() && rb.gravityScale == 0)
         {
-            float XSpeedLimit = rb.velocity.x < 0 ? -10.0f : 10.0f;
-            float YSpeedLimit = rb.velocity.y < 0 ? -10.0f : 10.0f;
+            float XSpeedLimit = rb.velocity.x < 0 ? -15.0f : 15.0f;
+            float YSpeedLimit = rb.velocity.y < 0 ? -15.0f : 15.0f;
             rb.velocity = new Vector2(XSpeedLimit, YSpeedLimit);
             speedLimitReached = true;
         }
@@ -92,7 +92,7 @@ public class Ball : MonoBehaviour
 
     public bool IsBelowSpeedLimit()
     {
-        return (Mathf.Abs(rb.velocity.x) < 10) && (Mathf.Abs(rb.velocity.y) < 10);  
+        return (Mathf.Abs(rb.velocity.x) < 15) && (Mathf.Abs(rb.velocity.y) < 15);  
     }
 
     public Vector3 GetFinalPosition()

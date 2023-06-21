@@ -20,7 +20,6 @@ public class BounceBall : CollisionAbility
     public override void Deactivate(GameObject parent){
         Rigidbody2D ball = parent.GetComponent<Rigidbody2D>();
         ball.gravityScale = 0;
-        ball.velocity = new Vector2(ball.velocity.x, ball.velocity.x);
         
     }
 
