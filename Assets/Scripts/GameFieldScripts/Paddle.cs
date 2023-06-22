@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
-    public static bool isTimeStopped = false;
+    public static bool isTimeStoppedByPlayer1 = false;
+    public static bool isTimeStoppedByPlayer2 = false;
     public bool canMoveDuringTimeStop = false;
 
     public bool isPlayer1;
@@ -21,7 +22,7 @@ public class Paddle : MonoBehaviour
 
     public void Update()
     {
-        if (isTimeStopped)
+        if (Paddle.isTimeStoppedByPlayer1 || Paddle.isTimeStoppedByPlayer2)
         {
             if (isPlayer1)
             {

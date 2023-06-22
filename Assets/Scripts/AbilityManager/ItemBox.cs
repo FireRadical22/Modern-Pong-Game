@@ -27,7 +27,7 @@ public class ItemBox : MonoBehaviour
 
     public void Update()
     {
-        if (!Paddle.isTimeStopped)
+        if (!Paddle.isTimeStoppedByPlayer1 && !Paddle.isTimeStoppedByPlayer2)
         {
             if (!itemBoxIsActive)
             {
