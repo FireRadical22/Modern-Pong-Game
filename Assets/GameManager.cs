@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
         } else
         {
             Player1Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
+            
             if (isSingleplayer)
             {
                 Player2Paddle.GetComponent<AIAbilityHolder>().ResetAllAbilities();
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
             {
                 Player2Paddle.GetComponent<AbilityHolder>().ResetAllAbilities();
             }
+
             ResetPosition();
         }
     }
