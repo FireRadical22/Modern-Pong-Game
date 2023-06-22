@@ -22,7 +22,7 @@ public class InvisibleBallAI : MonoBehaviour
     {
         //launches tracking ball at linear velocity
         transform.localPosition = affectedObject.transform.localPosition;
-        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        //gameObject.GetComponent<SpriteRenderer>().enabled = true;
         Vector2 rbvelocity = affectedObject.GetComponent<Rigidbody2D>().velocity;
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-rbvelocity.x * SpeedMultiplier, rbvelocity.y * SpeedMultiplier);
     }
@@ -31,7 +31,7 @@ public class InvisibleBallAI : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        //gameObject.GetComponent<SpriteRenderer>().enabled = false;
         transform.position = startPos;
     }
 }

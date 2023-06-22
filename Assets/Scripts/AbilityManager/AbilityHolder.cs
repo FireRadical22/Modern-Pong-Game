@@ -39,7 +39,16 @@ public class AbilityHolder : MonoBehaviour
 
     public void Start()
     {
-        heldAbilities = new int[] { 0, 4, 5 };
+        /*
+         * Integer mappings to skills
+         * 0 - Impassable
+         * 1 -
+         * 2 -
+         * 3 - Multi-Ball
+         * 4 - Slingshot
+         * 5 - 
+         */
+        heldAbilities = new int[] { 3, 4, 5 };
         UpdateAbilityUI();
         UpdateControlsInfo();
         currentSelectedAbility = 0;

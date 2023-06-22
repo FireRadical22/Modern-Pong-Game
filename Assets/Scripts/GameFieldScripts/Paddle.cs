@@ -78,7 +78,7 @@ public class Paddle : MonoBehaviour
         if (isCollisionWithBall)
         {
             Ball ballScript = collision.GetComponent<Ball>();
-            Debug.Log(ballScript.rb.velocity.x);
+            //Debug.Log(ballScript.rb.velocity.x);
             Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
 
             ballScript.lastHitByPlayer1 = isPlayer1;
