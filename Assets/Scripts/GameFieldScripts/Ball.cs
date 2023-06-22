@@ -38,7 +38,7 @@ public class Ball : MonoBehaviour
             speedLimitReached = true;
         }
 
-        if (Paddle.isTimeStopped)
+        if (Paddle.isTimeStoppedByPlayer1 || Paddle.isTimeStoppedByPlayer2)
         {
             float newX = rb.velocity.x / 1.003f; // decay factor
             float newY = rb.velocity.y / 1.003f;
@@ -112,7 +112,7 @@ public class Ball : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Paddle.isTimeStopped)
+        if (Paddle.isTimeStoppedByPlayer1 || Paddle.isTimeStoppedByPlayer2)
         {
             if (collision.gameObject.tag.Equals("Player"))
             {

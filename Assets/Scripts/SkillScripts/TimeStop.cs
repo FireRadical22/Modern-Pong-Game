@@ -6,40 +6,80 @@ using UnityEngine;
 public class TimeStop : TimeAbility
 {
 
-    public static Vector2 resultantVelocity;
-    float playerXPosition;
-    float playerYPosition;
-
+    public static Vector2 resultantVelocity = Vector2.zero;
+    private static GameObject Player1;
+    private static GameObject Player2;
     private GameObject ball;
+    private bool isFirstActivation = true;
+
+    float player1XPosition;
+    float player1YPosition;
+
+    float player2XPosition;
+    float player2YPosition;
 
     // Ability User is passed in as affectedObject
     public override void Activate(GameObject affectedObject)
     {
-        playerXPosition = affectedObject.GetComponent<Transform>().position.x;
-        playerYPosition = affectedObject.GetComponent<Transform>().position.y;
+        if (isFirstActivation)
+        {
+            isFirstActivation = false;
+            ball = GameObject.Find("Ball");
+        }
 
         SoundManager.PlayTimeStopSound();
-        ball = affectedObject.GetComponent<AbilityHolder>().ball;
+        if (affectedObject.name == "Player1")
+        {
+            player1XPosition = affectedObject.GetComponent<Transform>().position.x;
+            player1YPosition = affectedObject.GetComponent<Transform>().position.y;
+            ball = affectedObject.GetComponent<AbilityHolder>().ball;
 
-        // Save velocity before stopping time
-        resultantVelocity = ball.GetComponent<Rigidbody2D>().velocity;
-        ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            // Save velocity before stopping time
+            resultantVelocity += ball.GetComponent<Rigidbody2D>().velocity;
+            ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
-        affectedObject.GetComponent<Paddle>().canMoveDuringTimeStop = true;
-        Paddle.isTimeStopped = true;
+            affectedObject.GetComponent<Paddle>().canMoveDuringTimeStop = true;
+            Paddle.isTimeStoppedByPlayer1 = true;
+        }
+
+        if (affectedObject.name == "Player2")
+        {
+            player2XPosition = affectedObject.GetComponent<Transform>().position.x;
+            player2YPosition = affectedObject.GetComponent<Transform>().position.y;
+            ball = affectedObject.GetComponent<AbilityHolder>().ball;
+
+            // Save velocity before stopping time
+            resultantVelocity += ball.GetComponent<Rigidbody2D>().velocity;
+            ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+            affectedObject.GetComponent<Paddle>().canMoveDuringTimeStop = true;
+            Paddle.isTimeStoppedByPlayer2 = true;
+        }
     }
 
     public override void Deactivate(GameObject affectedObject)
     {
-        // Set ball velocity back
-        ball.GetComponent<Rigidbody2D>().velocity = resultantVelocity;
-        Paddle.isTimeStopped = false;
-        affectedObject.GetComponent<Paddle>().canMoveDuringTimeStop = false;
+        if (affectedObject.name == "Player1")
+        {
+            Paddle.isTimeStoppedByPlayer1 = false;
+            affectedObject.GetComponent<Paddle>().canMoveDuringTimeStop = false;
+            affectedObject.transform.position = new Vector3(player1XPosition, player1YPosition, 0);
+            affectedObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
 
-        Vector3 pos = affectedObject.GetComponent<Transform>().position;
+        if (affectedObject.name == "Player2")
+        {
+            Paddle.isTimeStoppedByPlayer2 = false;
+            affectedObject.GetComponent<Paddle>().canMoveDuringTimeStop = false;
+            affectedObject.transform.position = new Vector3(player2XPosition, player2YPosition, 0);
+            affectedObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
 
-        affectedObject.transform.position = new Vector3(playerXPosition, playerYPosition, 0);
-        affectedObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        if (!Paddle.isTimeStoppedByPlayer1 && !Paddle.isTimeStoppedByPlayer2)
+        {
+            // Set ball velocity back
+            ball.GetComponent<Rigidbody2D>().velocity = resultantVelocity;
+        }
     }
 
 }
