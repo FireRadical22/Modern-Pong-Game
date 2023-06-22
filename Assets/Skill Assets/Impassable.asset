@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   activeTime: 2
-  scaleFactor: 3
+  scaleFactor: 2
