@@ -6,8 +6,9 @@ using UnityEngine;
 public class MultiBall : CollisionAbility
 {
     public int CloneCount;
-    private Vector3 cloneSpreadVariance= new Vector3(0.2f, 0.2f, 0f);
+    private Vector3 cloneSpreadVariance= new Vector3(0.5f, 0.5f, 0f);
     private GameObject[] clones;
+    //private int trueBall;
 
     public override void Activate(GameObject PreFab)
     {
@@ -25,13 +26,17 @@ public class MultiBall : CollisionAbility
             
             Rigidbody2D cloneBody = clone.GetComponent<Rigidbody2D>();
             cloneBody.velocity = new Vector2(
-                PreFab.GetComponent<Rigidbody2D>().velocity.x * 1.1f,
-                PreFab.GetComponent<Rigidbody2D>().velocity.y * 1.1f);
+                PreFab.GetComponent<Ball>().getLastKnownVelocity().x * 1.1f,
+                PreFab.GetComponent<Ball>().getLastKnownVelocity().y * 1.1f);
 
             cloneBody.velocity += new Vector2(
                 Random.Range(-cloneSpreadVariance.x, cloneSpreadVariance.x),
                 Random.Range(-cloneSpreadVariance.y, cloneSpreadVariance.y));
-            
+
+            /*cloneBody.velocity = new Vector2(
+                -PreFab.GetComponent<Rigidbody2D>().velocity.x * 1.1f,
+                PreFab.GetComponent<Rigidbody2D>().velocity.y * 1.1f);*/
+
             //cloneBody.velocity = direction;
             clones[i] = clone;
             i++;

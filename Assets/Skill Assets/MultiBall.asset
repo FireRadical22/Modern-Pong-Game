@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a8cf46e18ea6a4b84191b92d44906a, type: 3}
   m_Name: MultiBall
   m_EditorClassIdentifier: 
-  Name: 
+  name: 
   CloneCount: 3

@@ -168,7 +168,7 @@ public class AIPaddle : MonoBehaviour
         if (detector.HasReached())
         {
             ballPos = detector.GetFinalDest();
-        } else
+        } else 
         {
             ballPos = ObjectTracking.transform.position;
         }
@@ -223,6 +223,12 @@ public class AIPaddle : MonoBehaviour
         {
             transform.localPosition += Vector3.zero;
         }
+    }
+
+    public void resetTracking()
+    {
+        ballPos = ObjectTracking.transform.position;
+        Track();
     }
 
     

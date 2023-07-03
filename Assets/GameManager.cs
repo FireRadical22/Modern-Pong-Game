@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
             if (isSingleplayer)
             {
                 Player2Paddle.GetComponent<AIAbilityHolder>().ResetAllAbilities();
+                Player2Paddle.GetComponent<AIPaddle>().resetTracking();
             }
             else
             {
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour
             if (isSingleplayer)
             {
                 Player2Paddle.GetComponent<AIAbilityHolder>().ResetAllAbilities();
+                Player2Paddle.GetComponent<AIPaddle>().resetTracking();
             }
             else
             {

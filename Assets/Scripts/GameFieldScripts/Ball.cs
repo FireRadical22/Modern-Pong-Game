@@ -57,21 +57,27 @@ public class Ball : MonoBehaviour
             }
             else
             {
-                rb.velocity = velocityList.Last.Value;
+                rb.velocity = getLastKnownVelocity();
                 velocityList = new LinkedList<Vector2>();
                 isRecalling = false;
             }
         }
         else
         {
-            list.AddLast(rb.position);
-            velocityList.AddLast(rb.velocity);
-
-            if (list.Count > 300)
+            if (list.Count + 1 > 300)
             {
                 list.RemoveFirst();
                 velocityList.RemoveFirst();
             }
+
+            list.AddLast(rb.position);
+            velocityList.AddLast(rb.velocity);
+
+            /*if (list.Count > 300)
+            {
+                list.RemoveFirst();
+                velocityList.RemoveFirst();
+            }*/
         }
     }
 
@@ -120,6 +126,11 @@ public class Ball : MonoBehaviour
             }
         }
 
+    }
+
+    public Vector2 getLastKnownVelocity()
+    {
+        return velocityList.Last.Value;
     }
 
 }
